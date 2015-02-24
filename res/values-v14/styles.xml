@@ -1,0 +1,22 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.-->
+        
+    <style name="parksTheme" parent="@style/Theme.Sherlock.Light">
+        <item name="android:actionBarStyle">@style/MyActionBarStyle</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        
+    </style>
+    
+    <style name="MyActionBarStyle" parent="@style/Widget.Sherlock.ActionBar">
+        <item name="android:background">#f0f1f1</item>
+        <item name="android:titleTextStyle">@style/parksTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="parksTheme.ActionBar.Text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    
+</resources>
