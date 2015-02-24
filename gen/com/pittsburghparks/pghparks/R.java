@@ -1403,6 +1403,7 @@ containing a value of this type.
         public static final int trail_icon_color=0x7f0200c4;
     }
     public static final class id {
+        public static final int ImageSwitcher01=0x7f070048;
         public static final int abs__action_bar=0x7f070035;
         public static final int abs__action_bar_container=0x7f070034;
         public static final int abs__action_bar_subtitle=0x7f070026;
@@ -1459,7 +1460,7 @@ containing a value of this type.
         public static final int hybrid=0x7f070006;
         public static final int listMode=0x7f070017;
         public static final int match_parent=0x7f07000e;
-        public static final int menu_settings=0x7f070048;
+        public static final int menu_settings=0x7f070049;
         public static final int monochrome=0x7f070016;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070003;
