@@ -63,22 +63,21 @@ public class Parks extends SherlockActivity {
 		getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-//	
-//	public void onStart()
-//	{
+	
+	public void onStart()
+	{
 //		super.onStart();
 //		
 //		try {
 //			if(Data.parksArray == null) {
-//				Intent myIntent = new Intent(context, Splash.class);
+//				Intent myIntent = new Intent(context, Main.class);
 //				context.startActivity(myIntent);
 //			}
 //		} catch(Exception e) {
-//			Intent myIntent = new Intent(context, Splash.class);
+//			Intent myIntent = new Intent(context, Main.class);
 //			context.startActivity(myIntent);
 //		}
 //		
-//		//move to onCreate()?
 //		ArrayList<String> parksArray = new ArrayList<String>();
 //		parksIdArray = new ArrayList<String>();
 //		JSONObject currPark;
@@ -114,7 +113,7 @@ public class Parks extends SherlockActivity {
 //					context.startActivity(myIntent);
 //				}
 //			});		
-//	}
+	}
 	public void setUpBottomNav()
 	{
 //		Button maps = (Button) findViewById(R.id.button1);

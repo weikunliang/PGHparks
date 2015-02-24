@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -146,7 +147,6 @@ public class Main extends SherlockActivity {
 				
 				Boolean gotData = Data.build(dataString,context);
 				if(!gotData) {
-					
 					return null;
 				}
 				else {
