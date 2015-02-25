@@ -11,6 +11,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,10 +21,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
 
 public class Main extends SherlockActivity {
 
@@ -30,7 +29,7 @@ public class Main extends SherlockActivity {
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.main);
         
 		context = this;
 		new GetData().execute("http://pghparks.deeplocal.com/package/");
@@ -150,7 +149,7 @@ public class Main extends SherlockActivity {
 					return null;
 				}
 				else {
-					Intent myIntent = new Intent(context, Parks.class);
+					Intent myIntent = new Intent(context, Tab.class);
 					context.startActivity(myIntent);
 				}
 			}
