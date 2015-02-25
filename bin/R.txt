@@ -390,7 +390,7 @@ int drawable schenely 0x7f0200c1
 int drawable schenley_map 0x7f0200c2
 int drawable splash 0x7f0200c3
 int drawable trail_icon_color 0x7f0200c4
-int id ImageSwitcher01 0x7f050048
+int id ImageSwitcher01 0x7f05004e
 int id abs__action_bar 0x7f050035
 int id abs__action_bar_container 0x7f050034
 int id abs__action_bar_subtitle 0x7f050026
@@ -433,6 +433,7 @@ int id abs__up 0x7f05000b
 int id adjust_height 0x7f050012
 int id adjust_width 0x7f050011
 int id book_now 0x7f050020
+int id button1 0x7f050049
 int id buyButton 0x7f05001b
 int id buy_now 0x7f05001f
 int id buy_with_google 0x7f05001e
@@ -440,15 +441,17 @@ int id classic 0x7f050022
 int id disableHome 0x7f050009
 int id donate_with_google 0x7f050021
 int id edit_query 0x7f05003b
-int id fragment_container 0x7f050049
+int id facebook 0x7f05004a
+int id fragment_container 0x7f05004f
 int id grayscale 0x7f050023
 int id holo_dark 0x7f050016
 int id holo_light 0x7f050017
 int id homeAsUp 0x7f050006
 int id hybrid 0x7f050015
+int id instagram 0x7f05004c
 int id listMode 0x7f050002
 int id match_parent 0x7f05001d
-int id menu_settings 0x7f05004a
+int id menu_settings 0x7f050050
 int id monochrome 0x7f050024
 int id none 0x7f050010
 int id normal 0x7f050001
@@ -462,7 +465,10 @@ int id showTitle 0x7f050007
 int id strict_sandbox 0x7f05001a
 int id tabMode 0x7f050003
 int id terrain 0x7f050014
+int id textView1 0x7f050048
+int id textView2 0x7f05004d
 int id title 0x7f050047
+int id twitter 0x7f05004b
 int id useLogo 0x7f050004
 int id wrap_content 0x7f050000
 int integer abs__max_action_buttons 0x7f090000

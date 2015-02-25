@@ -1403,7 +1403,7 @@ containing a value of this type.
         public static final int trail_icon_color=0x7f0200c4;
     }
     public static final class id {
-        public static final int ImageSwitcher01=0x7f050048;
+        public static final int ImageSwitcher01=0x7f05004e;
         public static final int abs__action_bar=0x7f050035;
         public static final int abs__action_bar_container=0x7f050034;
         public static final int abs__action_bar_subtitle=0x7f050026;
@@ -1446,6 +1446,7 @@ containing a value of this type.
         public static final int adjust_height=0x7f050012;
         public static final int adjust_width=0x7f050011;
         public static final int book_now=0x7f050020;
+        public static final int button1=0x7f050049;
         public static final int buyButton=0x7f05001b;
         public static final int buy_now=0x7f05001f;
         public static final int buy_with_google=0x7f05001e;
@@ -1453,15 +1454,17 @@ containing a value of this type.
         public static final int disableHome=0x7f050009;
         public static final int donate_with_google=0x7f050021;
         public static final int edit_query=0x7f05003b;
-        public static final int fragment_container=0x7f050049;
+        public static final int facebook=0x7f05004a;
+        public static final int fragment_container=0x7f05004f;
         public static final int grayscale=0x7f050023;
         public static final int holo_dark=0x7f050016;
         public static final int holo_light=0x7f050017;
         public static final int homeAsUp=0x7f050006;
         public static final int hybrid=0x7f050015;
+        public static final int instagram=0x7f05004c;
         public static final int listMode=0x7f050002;
         public static final int match_parent=0x7f05001d;
-        public static final int menu_settings=0x7f05004a;
+        public static final int menu_settings=0x7f050050;
         public static final int monochrome=0x7f050024;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050001;
@@ -1475,7 +1478,10 @@ containing a value of this type.
         public static final int strict_sandbox=0x7f05001a;
         public static final int tabMode=0x7f050003;
         public static final int terrain=0x7f050014;
+        public static final int textView1=0x7f050048;
+        public static final int textView2=0x7f05004d;
         public static final int title=0x7f050047;
+        public static final int twitter=0x7f05004b;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }
