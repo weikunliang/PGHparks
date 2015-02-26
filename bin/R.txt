@@ -442,7 +442,7 @@ int id disableHome 0x7f050009
 int id donate_with_google 0x7f050021
 int id edit_query 0x7f05003b
 int id facebook 0x7f05004a
-int id fragment_container 0x7f05004f
+int id fragment_container 0x7f050052
 int id grayscale 0x7f050023
 int id holo_dark 0x7f050016
 int id holo_light 0x7f050017
@@ -451,10 +451,13 @@ int id hybrid 0x7f050015
 int id instagram 0x7f05004c
 int id listMode 0x7f050002
 int id match_parent 0x7f05001d
-int id menu_settings 0x7f050050
+int id menu_settings 0x7f050053
 int id monochrome 0x7f050024
 int id none 0x7f050010
 int id normal 0x7f050001
+int id park_arrow 0x7f050051
+int id park_name 0x7f050050
+int id parks_list 0x7f05004f
 int id production 0x7f050018
 int id sandbox 0x7f050019
 int id satellite 0x7f050013
@@ -501,9 +504,10 @@ int layout events 0x7f030018
 int layout main 0x7f030019
 int layout map 0x7f03001a
 int layout parks 0x7f03001b
-int layout sherlock_spinner_dropdown_item 0x7f03001c
-int layout sherlock_spinner_item 0x7f03001d
-int layout tab 0x7f03001e
+int layout parks_list 0x7f03001c
+int layout sherlock_spinner_dropdown_item 0x7f03001d
+int layout sherlock_spinner_item 0x7f03001e
+int layout tab 0x7f03001f
 int menu main 0x7f0c0000
 int raw gtm_analytics 0x7f040000
 int string abs__action_bar_home_description 0x7f0a0000

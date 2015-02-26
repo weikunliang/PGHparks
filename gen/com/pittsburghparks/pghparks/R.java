@@ -1455,7 +1455,7 @@ containing a value of this type.
         public static final int donate_with_google=0x7f050021;
         public static final int edit_query=0x7f05003b;
         public static final int facebook=0x7f05004a;
-        public static final int fragment_container=0x7f05004f;
+        public static final int fragment_container=0x7f050052;
         public static final int grayscale=0x7f050023;
         public static final int holo_dark=0x7f050016;
         public static final int holo_light=0x7f050017;
@@ -1464,10 +1464,13 @@ containing a value of this type.
         public static final int instagram=0x7f05004c;
         public static final int listMode=0x7f050002;
         public static final int match_parent=0x7f05001d;
-        public static final int menu_settings=0x7f050050;
+        public static final int menu_settings=0x7f050053;
         public static final int monochrome=0x7f050024;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050001;
+        public static final int park_arrow=0x7f050051;
+        public static final int park_name=0x7f050050;
+        public static final int parks_list=0x7f05004f;
         public static final int production=0x7f050018;
         public static final int sandbox=0x7f050019;
         public static final int satellite=0x7f050013;
@@ -1518,9 +1521,10 @@ containing a value of this type.
         public static final int main=0x7f030019;
         public static final int map=0x7f03001a;
         public static final int parks=0x7f03001b;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001c;
-        public static final int sherlock_spinner_item=0x7f03001d;
-        public static final int tab=0x7f03001e;
+        public static final int parks_list=0x7f03001c;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
+        public static final int sherlock_spinner_item=0x7f03001e;
+        public static final int tab=0x7f03001f;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
