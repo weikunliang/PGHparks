@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
 
 public class Tab extends SherlockFragmentActivity {
 	ActionBar.Tab Tab1,Tab2,Tab3,Tab4,Tab5;
@@ -49,5 +50,15 @@ public class Tab extends SherlockFragmentActivity {
 		actionBar.addTab(Tab3);
 		actionBar.addTab(Tab4);
 		actionBar.addTab(Tab5);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		// Inflate the menu; this adds items to the action bar if it is present.
+        getSupportActionBar().setCustomView(R.layout.action_bar_title);
+		getSupportActionBar().setDisplayShowCustomEnabled(true);
+		getSupportMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	}
 }

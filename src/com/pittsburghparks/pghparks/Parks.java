@@ -28,7 +28,7 @@ public class Parks extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		context = getActivity();
-		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(context,SingleActivity.class));
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(context,ActivityDetail.class));
 		try {
 			if(Data.parksArray == null) {
 				Intent myIntent = new Intent(context, Main.class);
@@ -72,11 +72,12 @@ public class Parks extends SherlockFragment {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
 				{
+					
 					TextView textView = (TextView) arg1.findViewById(R.id.park_name); 
-					Intent myIntent = new Intent(context, SinglePark.class);
+					Intent myIntent = new Intent(getActivity(), ActivityList.class);
 					myIntent.putExtra("parkName", textView.getText().toString());
 					myIntent.putExtra("parkId", parksIdArray.get(arg2));
-					context.startActivity(myIntent);
+					startActivity(myIntent);
 				}
 			});		
 	
