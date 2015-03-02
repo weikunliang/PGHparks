@@ -12,9 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -39,7 +37,7 @@ public class ActivityList extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
 		context = this;
-		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(context,ActivityDetail.class));
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(context,ActivityOption.class));
 
 		try {
 			if(Data.photosArray == null) {
@@ -52,13 +50,7 @@ public class ActivityList extends SherlockActivity {
 		}
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_list);
-		
-//		View rootView = inflater.inflate(R.layout.activity_list, container, false);
-//        View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
-//        TextView title = (TextView) actionBarView.findViewById(R.id.title);
-//        title.setText("Activities");
-        
+		setContentView(R.layout.activity_list);   
         
         Intent intent = getIntent();
 		parkName = intent.getStringExtra("parkName");
@@ -68,7 +60,23 @@ public class ActivityList extends SherlockActivity {
 		singleParkArray.add("Things To Do");
 		
 
-		ArrayList<String> activitiesSubArray = new ArrayList<String>();
+//		JSONObject currObject;
+//		ArrayList<String> activitySubArray = new ArrayList<String>();
+//		activityObjectsArray = new ArrayList<JSONObject>();
+		
+//		for(int z = 0; z<Data.objectsArray.length(); z++)
+//			{
+//				currObject = Data.objectsArray.getJSONObject(z);
+//				//add any we find to a list
+//				if(currObject.get("activityid").toString().equals(activityId))
+//				{					
+//					activitySubArray.add(currObject.get("name").toString());
+//					activityObjectsArray.add(currObject);
+//				}
+//			}
+		
+		
+		ArrayList<String> activitiesSubArrayAll = new ArrayList<String>();
 		JSONObject currActivity;
 		for(int i = 0; i<Data.activitiesArray.length(); i++)
 		{
@@ -77,7 +85,7 @@ public class ActivityList extends SherlockActivity {
 				currActivity = Data.activitiesArray.getJSONObject(i);
 				if(currActivity.get("park_id").toString().equals(parkId))
 				{
-					activitiesSubArray.add(currActivity.get("title").toString());
+					activitiesSubArrayAll.add(currActivity.get("title").toString());
 				}
 			} 
 			catch (JSONException e) 
@@ -86,6 +94,35 @@ public class ActivityList extends SherlockActivity {
 				e.printStackTrace();
 			}
 		}
+		
+		ArrayList<String> activitiesSubArray = new ArrayList<String>();
+		JSONObject currObject;
+		JSONObject currAct;
+		for(int x = 0; x<activitiesSubArrayAll.size(); x++){
+			try {
+				JSONObject activity = null;
+				for(int y = 0; y<Data.activitiesArray.length(); y++){
+					currAct = Data.activitiesArray.getJSONObject(y);
+					if(currAct.get("park_id").toString().equals(parkId) && currAct.get("title").toString().equals(activitiesSubArrayAll.get(x))){
+						activity = currAct;
+						break;
+					}
+				}
+				
+				for(int z = 0; z<Data.objectsArray.length(); z++){
+					currObject = Data.objectsArray.getJSONObject(z);
+					if(currObject.get("activityid").toString().equals(activity.get("id").toString())){
+						activitiesSubArray.add(activitiesSubArrayAll.get(x));
+						break;
+					}
+				}
+			
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		ListView parksList = (ListView) findViewById(R.id.park_activities_list);
 		
 		ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, activitiesSubArray);
@@ -97,7 +134,7 @@ public class ActivityList extends SherlockActivity {
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
 				{
 					TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
-					Intent myIntent = new Intent(context, ActivityDetail.class);
+					Intent myIntent = new Intent(context, ActivityOption.class);
 					myIntent.putExtra("activityName", textView.getText().toString());
 					myIntent.putExtra("parkId", parkId);
 					context.startActivity(myIntent);
