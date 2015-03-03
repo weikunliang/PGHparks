@@ -18,21 +18,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 public class ActivityList extends SherlockActivity {
 	Context context;
 	Activity activity;
-	ViewFlipper flipper;
 	String parkName, parkId;
-	String[] imageUrls;
-	String[] imageThumbUrls;
-	String[] imageTitles;
-	String[] imageNotes;
-	ArrayList<String> imageThumbUrlsList = new ArrayList<String>();
-	ArrayList<String> imageUrlsList = new ArrayList<String>();
-	ArrayList<String> imageTitlesList = new ArrayList<String>();
-	ArrayList<String> imageNotesList = new ArrayList<String>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -55,27 +45,7 @@ public class ActivityList extends SherlockActivity {
         Intent intent = getIntent();
 		parkName = intent.getStringExtra("parkName");
 		parkId = intent.getStringExtra("parkId");
-
-		ArrayList<String> singleParkArray = new ArrayList<String>();
-		singleParkArray.add("Things To Do");
-		
-
-//		JSONObject currObject;
-//		ArrayList<String> activitySubArray = new ArrayList<String>();
-//		activityObjectsArray = new ArrayList<JSONObject>();
-		
-//		for(int z = 0; z<Data.objectsArray.length(); z++)
-//			{
-//				currObject = Data.objectsArray.getJSONObject(z);
-//				//add any we find to a list
-//				if(currObject.get("activityid").toString().equals(activityId))
-//				{					
-//					activitySubArray.add(currObject.get("name").toString());
-//					activityObjectsArray.add(currObject);
-//				}
-//			}
-		
-		
+			
 		ArrayList<String> activitiesSubArrayAll = new ArrayList<String>();
 		JSONObject currActivity;
 		for(int i = 0; i<Data.activitiesArray.length(); i++)
