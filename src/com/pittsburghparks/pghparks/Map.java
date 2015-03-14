@@ -41,8 +41,8 @@ public class Map extends SherlockFragment {
 
 	    googleMap = mMapView.getMap();
 	    // latitude and longitude
-	    double latitude;
-	    double longitude;
+	    double latitude = 40.4433;
+	    double longitude = -79.9436;
 	    
 	    JSONObject currObj;
 	    for(int i = 0; i<Data.objectsArray.length(); i++){
@@ -61,25 +61,7 @@ public class Map extends SherlockFragment {
 				e.printStackTrace();
 			}
 		}
-	    
-	    
-	    latitude = 40.4433;
-	    longitude = -79.9436;
-
-	    // create marker
-	    MarkerOptions marker = new MarkerOptions().position(
-	            new LatLng(latitude, longitude)).title("Hello Maps");
-
-	    // Changing marker icon
-	    marker.icon(BitmapDescriptorFactory
-	            .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-
-	    // adding marker
-	    googleMap.addMarker(marker);
-	    
-	    
-	    
-	    
+	      
 	    CameraPosition cameraPosition = new CameraPosition.Builder()
 	            .target(new LatLng(latitude, longitude)).zoom(12).build();
 	    googleMap.animateCamera(CameraUpdateFactory
