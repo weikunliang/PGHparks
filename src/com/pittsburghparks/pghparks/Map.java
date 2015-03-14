@@ -1,5 +1,8 @@
 package com.pittsburghparks.pghparks;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,8 +41,30 @@ public class Map extends SherlockFragment {
 
 	    googleMap = mMapView.getMap();
 	    // latitude and longitude
-	    double latitude = 40.4433;
-	    double longitude = -79.9436;
+	    double latitude;
+	    double longitude;
+	    
+	    JSONObject currObj;
+	    for(int i = 0; i<Data.objectsArray.length(); i++){
+			try {
+				currObj = Data.objectsArray.getJSONObject(i);
+				latitude = (Double) currObj.get("lat");
+				longitude = (Double) currObj.get("lon");
+				
+				MarkerOptions marker = new MarkerOptions().position(
+			            new LatLng(latitude, longitude)).title(currObj.get("name").toString());
+				marker.icon(BitmapDescriptorFactory
+			            .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+				googleMap.addMarker(marker);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	    
+	    
+	    latitude = 40.4433;
+	    longitude = -79.9436;
 
 	    // create marker
 	    MarkerOptions marker = new MarkerOptions().position(
@@ -51,6 +76,10 @@ public class Map extends SherlockFragment {
 
 	    // adding marker
 	    googleMap.addMarker(marker);
+	    
+	    
+	    
+	    
 	    CameraPosition cameraPosition = new CameraPosition.Builder()
 	            .target(new LatLng(latitude, longitude)).zoom(12).build();
 	    googleMap.animateCamera(CameraUpdateFactory
