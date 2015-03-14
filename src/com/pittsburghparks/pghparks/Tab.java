@@ -3,12 +3,14 @@ package com.pittsburghparks.pghparks;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 
 public class Tab extends SherlockFragmentActivity {
 	ActionBar.Tab Tab1,Tab2,Tab3,Tab4,Tab5;
 	Fragment fragmentTab1 = new Map();
+
 	Fragment fragmentTab2 = new Parks();
 	Fragment fragmentTab3 = new Events();
 	Fragment fragmentTab4 = new Donate();

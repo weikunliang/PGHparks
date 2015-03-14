@@ -12,29 +12,18 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ActivityDetail extends SherlockFragmentActivity {
 
@@ -86,6 +75,8 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		
 		final Intent intent = getIntent();
 		String txt = "";
+		double lat = 0;
+		double lon = 0;
 		String objectName = intent.getStringExtra("objectName");
 		JSONObject currObject;
 		for(int i = 0; i<Data.objectsArray.length(); i++){
@@ -93,6 +84,8 @@ public class ActivityDetail extends SherlockFragmentActivity {
 				currObject = Data.objectsArray.getJSONObject(i);
 				if(currObject.get("name").toString().equals(objectName)){
 					txt = currObject.get("notes").toString();
+					lat = (Double) currObject.get("lat");
+					lon = (Double) currObject.get("lon");
 					break;
 				}
 			} catch (JSONException e) {
@@ -102,14 +95,32 @@ public class ActivityDetail extends SherlockFragmentActivity {
 			
 		}
 		
+		final double latitude = lat;
+		final double longitude = lon;
 		
 		TextView content = (TextView) findViewById(R.id.description);
 		//ImageView mainImageIV = (ImageView) findViewById(R.id.image);
-		Log.i("txt", txt);
 		if(content == null){
 			Log.i("CONTENT", "NULLL");
 		}
 		content.setText(txt);
+		
+		Button open = (Button) findViewById(R.id.open);
+		
+		open.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+//				Intent myIntent = new Intent(getApplicationContext(),Tab.class);
+//				myIntent.putExtra("name", intent.getStringExtra("objectName"));
+//				startActivity(myIntent);
+				SherlockFragment map = new Map();
+				Bundle bundle = new Bundle();
+				bundle.putDouble("lat", latitude);
+				bundle.putDouble("lon", longitude);
+				map.setArguments(bundle);
+			}			
+		});
 		
 	}
 
