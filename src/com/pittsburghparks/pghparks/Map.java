@@ -4,9 +4,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -15,17 +17,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Map extends SherlockFragment implements OnInfoWindowClickListener{
+public class Map extends SherlockFragment implements LocationListener, LocationSource, OnInfoWindowClickListener, android.location.LocationListener{
 	MapView mMapView;
 	private GoogleMap googleMap;
+	private LocationManager locationManager;
+	private OnLocationChangedListener mListener;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +57,16 @@ public class Map extends SherlockFragment implements OnInfoWindowClickListener{
 	    double latitude = 40.4433;
 	    double longitude = -79.9436;
 	    
+	    double latArg = 0;
+	    double lonArg = 0;
+	    
+	    Bundle arguments = getArguments();
+	    
+	    if(arguments != null){
+	    	latArg = Double.parseDouble(getArguments().getString("lat"));    
+	    	lonArg = Double.parseDouble(getArguments().getString("lon")); 
+	    }
+	    
 	    JSONObject currObj;
 	    for(int i = 0; i<Data.objectsArray.length(); i++){
 			try {
@@ -62,6 +80,9 @@ public class Map extends SherlockFragment implements OnInfoWindowClickListener{
 				marker.icon(BitmapDescriptorFactory
 			            .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
 				Marker m = googleMap.addMarker(marker);
+				if(latitude == latArg && longitude == lonArg){
+					m.showInfoWindow();
+				}
 				googleMap.setOnInfoWindowClickListener(this);
 				
 			} catch (JSONException e) {
@@ -70,20 +91,37 @@ public class Map extends SherlockFragment implements OnInfoWindowClickListener{
 			}
 		}
 	    
-	    double lat = latitude;
-	    double lon = longitude;
-	    
-	    if(this.getArguments() != null){
-		    Bundle bundle = this.getArguments();
-		    lat = bundle.getDouble("lat", 0);
-		    lon = bundle.getDouble("lon", 0);
-	    }
-	    
 	    CameraPosition cameraPosition = new CameraPosition.Builder()
-	            .target(new LatLng(lat, lon)).zoom(20).build();
+	            .target(new LatLng(latArg, lonArg)).zoom(20).build();
 	    googleMap.animateCamera(CameraUpdateFactory
 	            .newCameraPosition(cameraPosition));
 
+	    
+	    locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+	    
+        if(locationManager != null)
+        {
+            boolean gpsIsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            boolean networkIsEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+             
+            if(gpsIsEnabled)
+            {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000L, 10F, this);
+            }
+            else if(networkIsEnabled)
+            {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000L, 10F, this);
+            }
+            else
+            {
+                //Show an error dialog that GPS is disabled...
+            }
+        }
+        else
+        {
+            //Show some generic error dialog because something must have gone wrong with location manager.
+        }
+        setUpMap();
 
 	    // Perform any camera updates here
 	    return v;
@@ -96,14 +134,27 @@ public class Map extends SherlockFragment implements OnInfoWindowClickListener{
 		startActivity(intent);
 	}
 	
+	private void setUpMap() 
+    {
+        googleMap.setMyLocationEnabled(true);
+    }
+	
 	@Override
 	public void onResume() {
 	    super.onResume();
 	    mMapView.onResume();
+        if(locationManager != null)
+        {
+            googleMap.setMyLocationEnabled(true);
+        }
 	}
 
 	@Override
 	public void onPause() {
+		if(locationManager != null)
+        {
+            locationManager.removeUpdates(this);
+        }
 	    super.onPause();
 	    mMapView.onPause();
 	}
@@ -119,5 +170,49 @@ public class Map extends SherlockFragment implements OnInfoWindowClickListener{
 	    super.onLowMemory();
 	    mMapView.onLowMemory();
 	}
+	
+	@Override
+    public void activate(OnLocationChangedListener listener) 
+    {
+        mListener = listener;
+    }
+     
+    @Override
+    public void deactivate() 
+    {
+        mListener = null;
+    }
+ 
+    @Override
+    public void onLocationChanged(Location location) 
+    {
+        if( mListener != null )
+        {
+            mListener.onLocationChanged( location );
+ 
+            googleMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+        }
+    }
+ 
+    @Override
+    public void onProviderDisabled(String provider) 
+    {
+        // TODO Auto-generated method stub
+        Toast.makeText(getActivity(), "provider disabled", Toast.LENGTH_SHORT).show();
+    }
+ 
+    @Override
+    public void onProviderEnabled(String provider) 
+    {
+        // TODO Auto-generated method stub
+        Toast.makeText(getActivity(), "provider enabled", Toast.LENGTH_SHORT).show();
+    }
+ 
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) 
+    {
+        // TODO Auto-generated method stub
+        Toast.makeText(getActivity(), "status changed", Toast.LENGTH_SHORT).show();
+    }
 
 }

@@ -111,14 +111,10 @@ public class ActivityDetail extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-//				Intent myIntent = new Intent(getApplicationContext(),Tab.class);
-//				myIntent.putExtra("name", intent.getStringExtra("objectName"));
-//				startActivity(myIntent);
-				SherlockFragment map = new Map();
-				Bundle bundle = new Bundle();
-				bundle.putDouble("lat", latitude);
-				bundle.putDouble("lon", longitude);
-				map.setArguments(bundle);
+				Intent myIntent = new Intent(getApplicationContext(),Tab.class);
+				myIntent.putExtra("lat", Double.toString(latitude));
+				myIntent.putExtra("lon", Double.toString(longitude));
+				startActivity(myIntent);
 			}			
 		});
 		

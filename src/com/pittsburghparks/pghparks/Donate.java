@@ -24,7 +24,7 @@ public class Donate extends SherlockFragment {
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);   
         webView.getSettings().setAllowFileAccess(true); 
         webView.getSettings().setDomStorageEnabled(true);
-        webView.loadUrl("https://www.pittsburghparks.org/donate");
+        webView.loadUrl("https://www.pittsburghparks.org/donate_mobile");
 	    
 	    return mainView;
 	}

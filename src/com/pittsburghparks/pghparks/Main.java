@@ -150,6 +150,8 @@ public class Main extends SherlockActivity {
 				}
 				else {
 					Intent myIntent = new Intent(context, Tab.class);
+					myIntent.putExtra("lat", Double.toString(40.4433));
+					myIntent.putExtra("lon", Double.toString(-79.9436));
 					context.startActivity(myIntent);
 				}
 			}
