@@ -27,4 +27,15 @@
         android:layout_marginLeft="14dp"
          />
 
+    <Button
+        android:id="@+id/open"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="72dp"
+        android:layout_marginRight="26dp"
+        android:text="Open in Maps" />
+
 </RelativeLayout>
