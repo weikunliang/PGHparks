@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
@@ -59,6 +60,7 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	    
 	    double latArg = 0;
 	    double lonArg = 0;
+	    boolean current = true;
 	    
 	    Bundle arguments = getArguments();
 	    
@@ -82,6 +84,7 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 				Marker m = googleMap.addMarker(marker);
 				if(latitude == latArg && longitude == lonArg){
 					m.showInfoWindow();
+					current = false;
 				}
 				googleMap.setOnInfoWindowClickListener(this);
 				
@@ -90,11 +93,6 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 				e.printStackTrace();
 			}
 		}
-	    
-	    CameraPosition cameraPosition = new CameraPosition.Builder()
-	            .target(new LatLng(latArg, lonArg)).zoom(20).build();
-	    googleMap.animateCamera(CameraUpdateFactory
-	            .newCameraPosition(cameraPosition));
 
 	    
 	    locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -124,8 +122,15 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
         setUpMap();
 
 	    // Perform any camera updates here
+        
+        
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latArg, lonArg)).zoom(15).build();
+        googleMap.animateCamera(CameraUpdateFactory
+        .newCameraPosition(cameraPosition));
+
 	    return v;
 	}
+	
 	
 	public void onInfoWindowClick(Marker marker){
 		
