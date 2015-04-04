@@ -1,14 +1,14 @@
 package com.pittsburghparks.pghparks;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.Window;
 
 public class Tab extends SherlockFragmentActivity {
 	ActionBar.Tab Tab1,Tab2,Tab3,Tab4,Tab5;
@@ -18,18 +18,20 @@ public class Tab extends SherlockFragmentActivity {
 	Fragment fragmentTab4 = new Donate();
 	Fragment fragmentTab5 = new Contact();
 	
-	@Override
+	@SuppressLint("NewApi") @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.tab);
- 
+ 		
 		ActionBar actionBar = getSupportActionBar();
- 
-		// Hide Actionbar Icon
-		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setLogo(R.drawable.ic_launcher);
+		actionBar.setDisplayUseLogoEnabled(true);
+		actionBar.setDisplayShowHomeEnabled(true);
+		
  
 		// Hide Actionbar Title
-		actionBar.setDisplayShowTitleEnabled(false);
+		//actionBar.setDisplayShowTitleEnabled(false);
  
 		// Create Actionbar Tabs
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -40,7 +42,7 @@ public class Tab extends SherlockFragmentActivity {
 		Tab3 = actionBar.newTab().setText("Events");
 		Tab4 = actionBar.newTab().setText("Donate");
 		Tab5 = actionBar.newTab().setText("Contact");
- 
+		 
 		// Set Tab Listeners
 		Tab1.setTabListener(new TabListener(fragmentTab1));
 		Tab2.setTabListener(new TabListener(fragmentTab2));
@@ -54,6 +56,7 @@ public class Tab extends SherlockFragmentActivity {
 		actionBar.addTab(Tab3);
 		actionBar.addTab(Tab4);
 		actionBar.addTab(Tab5);
+	
 
 		final Intent intent = getIntent();
 		Bundle bundle = new Bundle();
@@ -61,6 +64,7 @@ public class Tab extends SherlockFragmentActivity {
 		bundle.putString("lon", intent.getStringExtra("lon"));
 		// set Fragmentclass Arguments
 		fragmentTab1.setArguments(bundle);
+		
 	}
 	
 	
