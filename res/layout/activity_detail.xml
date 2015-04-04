@@ -8,15 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.pittsburghparks.pghparks.ActivityDetail" >
 
-    <!-- <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="126dp"
-        android:layout_marginTop="88dp"
-        android:src="@drawable/abs__ab_solid_light_holo" /> -->
 
     <TextView
         android:id="@+id/description"
@@ -26,16 +17,25 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="14dp"
          />
+    
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/open"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="72dp"
-        android:layout_marginRight="26dp"
+        android:layout_above="@+id/imageView1"
+        android:layout_alignRight="@+id/imageView1"
+        android:layout_marginBottom="14dp"
+        android:layout_marginRight="25dp"
         android:text="Open in Maps" />
 
 </RelativeLayout>
