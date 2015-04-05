@@ -10,13 +10,31 @@
 
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="14dp"
-         />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#566D30"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/title"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="29dp"
+        android:layout_marginRight="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <ImageView
         android:id="@+id/imageView1"
@@ -30,12 +48,12 @@
     <Button
         android:id="@+id/open"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView1"
+        android:layout_width="130sp"
+        android:layout_height="40sp"
         android:layout_alignRight="@+id/imageView1"
-        android:layout_marginBottom="14dp"
-        android:layout_marginRight="25dp"
-        android:text="Open in Maps" />
+        android:layout_below="@+id/description"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="23dp"
+        android:background="@drawable/view" />
 
 </RelativeLayout>

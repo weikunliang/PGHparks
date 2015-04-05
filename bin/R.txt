@@ -423,6 +423,7 @@ int drawable tab_unselected_parkstheme 0x7f0200e0
 int drawable tab_unselected_pressed_parkstheme 0x7f0200e1
 int drawable trail_icon_color 0x7f0200e2
 int drawable twitter 0x7f0200e3
+int drawable view 0x7f0200e4
 int id ImageSwitcher01 0x7f050055
 int id abs__action_bar 0x7f050035
 int id abs__action_bar_container 0x7f050034
@@ -476,7 +477,7 @@ int id description 0x7f050048
 int id disableHome 0x7f050009
 int id donate_with_google 0x7f050021
 int id edit_query 0x7f05003b
-int id facebook 0x7f050050
+int id facebook 0x7f050051
 int id fragment_container 0x7f05005d
 int id grayscale 0x7f050023
 int id holo_dark 0x7f050016
@@ -484,7 +485,7 @@ int id holo_light 0x7f050017
 int id homeAsUp 0x7f050006
 int id hybrid 0x7f050015
 int id imageView1 0x7f050049
-int id instagram 0x7f050051
+int id instagram 0x7f050050
 int id listMode 0x7f050002
 int id mapView 0x7f050056
 int id match_parent 0x7f05001d

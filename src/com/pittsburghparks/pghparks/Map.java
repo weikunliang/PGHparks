@@ -60,7 +60,6 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	    
 	    double latArg = 0;
 	    double lonArg = 0;
-	    boolean current = true;
 	    
 	    Bundle arguments = getArguments();
 	    
@@ -80,11 +79,10 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 			            new LatLng(latitude, longitude)).title(currObj.get("name").toString());
 				
 				marker.icon(BitmapDescriptorFactory
-			            .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+			            .defaultMarker(BitmapDescriptorFactory.HUE_RED));
 				Marker m = googleMap.addMarker(marker);
 				if(latitude == latArg && longitude == lonArg){
 					m.showInfoWindow();
-					current = false;
 				}
 				googleMap.setOnInfoWindowClickListener(this);
 				

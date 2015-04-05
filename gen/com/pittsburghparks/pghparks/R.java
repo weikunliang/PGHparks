@@ -1434,6 +1434,7 @@ containing a value of this type.
         public static final int tab_unselected_pressed_parkstheme=0x7f0200e1;
         public static final int trail_icon_color=0x7f0200e2;
         public static final int twitter=0x7f0200e3;
+        public static final int view=0x7f0200e4;
     }
     public static final class id {
         public static final int ImageSwitcher01=0x7f050055;
@@ -1489,7 +1490,7 @@ containing a value of this type.
         public static final int disableHome=0x7f050009;
         public static final int donate_with_google=0x7f050021;
         public static final int edit_query=0x7f05003b;
-        public static final int facebook=0x7f050050;
+        public static final int facebook=0x7f050051;
         public static final int fragment_container=0x7f05005d;
         public static final int grayscale=0x7f050023;
         public static final int holo_dark=0x7f050016;
@@ -1497,7 +1498,7 @@ containing a value of this type.
         public static final int homeAsUp=0x7f050006;
         public static final int hybrid=0x7f050015;
         public static final int imageView1=0x7f050049;
-        public static final int instagram=0x7f050051;
+        public static final int instagram=0x7f050050;
         public static final int listMode=0x7f050002;
         public static final int mapView=0x7f050056;
         public static final int match_parent=0x7f05001d;
