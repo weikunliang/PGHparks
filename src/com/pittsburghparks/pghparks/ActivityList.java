@@ -101,98 +101,99 @@ public class ActivityList extends SherlockActivity {
 			}
 		}
 		
-		String text = "";
-		JSONObject currPark;
-		for(int y = 0; y < Data.parksArray.length(); y ++){
-			try {
-				currPark = Data.parksArray.getJSONObject(y);
-				if(currPark.get("id").toString().equals(parkId)){
-					text = currPark.get("notes").toString();
+		// ABOU TEXT
+		
+//		String text = "";
+//		JSONObject currPark;
+//		for(int y = 0; y < Data.parksArray.length(); y ++){
+//			try {
+//				currPark = Data.parksArray.getJSONObject(y);
+//				if(currPark.get("id").toString().equals(parkId)){
+//					text = currPark.get("notes").toString();
+//				}
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+		
+//		TextView parkTitle = (TextView) findViewById(R.id.park_name);
+//		parkTitle.setText(parkName);
+//		TextView about = (TextView) findViewById(R.id.about);
+//		about.setText(text);
+		//ListView parksList = (ListView) findViewById(R.id.park_activities_list);	
+		
+		//NEW CONTENT GOES HERE
+		for(int i=0; i<activitiesSubArray.size(); i++){
+			TextView title = (TextView) findViewById(R.id.title);
+			ListView objectsList = (ListView) findViewById(R.id.park_activities_list);	
+		
+			activityName = activitiesSubArray.get(i);
+			title.setText(activitiesSubArray.get(i));
+			
+			JSONObject currAct2;
+			for(int j = 0; j<Data.activitiesArray.length(); j++){
+				try {
+					currAct2 = Data.activitiesArray.getJSONObject(j);
+					if(currAct2.get("title").equals(activityName) && currAct2.get("park_id").toString().equals(parkId)){
+						activityId = Data.activitiesArray.getJSONObject(j).get("id").toString();
+						break;
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		}
+			
+			ArrayList<String> objectsArray = new ArrayList<String>();
+			JSONObject currObj;
+			for(int x = 0; x<Data.objectsArray.length(); x++){
+				try {
+						currObj = Data.objectsArray.getJSONObject(x);
+						if(currObj.get("park_id").toString().equals(parkId) && currObj.get("activityid").toString().equals(activityId)){
+							objectsArray.add(currObj.get("name").toString());
+						}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		
-		TextView parkTitle = (TextView) findViewById(R.id.park_name);
-		parkTitle.setText(parkName);
-		TextView about = (TextView) findViewById(R.id.about);
-		about.setText(text);
-		ListView parksList = (ListView) findViewById(R.id.park_activities_list);	
-		
-		
-//		for(int i=0; i<activitiesSubArray.size(); i++){
-//			TextView title = (TextView) findViewById(R.id.title);
-//			ListView objectsList = (ListView) findViewById(R.id.park_activities_list);	
+			}
+						
+			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, objectsArray);
+			objectsList.setAdapter(parksAdapter);
 			
-			//NEW CONTENT GOES HERE
-			
-//			activityName = activitiesSubArray.get(i);
-//			title.setText(activitiesSubArray.get(i));
-//			
-//			JSONObject currAct2;
-//			for(int j = 0; j<Data.activitiesArray.length(); j++){
-//				try {
-//					currAct2 = Data.activitiesArray.getJSONObject(j);
-//					if(currAct2.get("title").equals(activityName) && currAct2.get("park_id").toString().equals(parkId)){
-//						activityId = Data.activitiesArray.getJSONObject(j).get("id").toString();
-//						break;
-//					}
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//			
-//			ArrayList<String> objectsArray = new ArrayList<String>();
-//			JSONObject currObj;
-//			for(int x = 0; x<Data.objectsArray.length(); x++){
-//				try {
-//						currObj = Data.objectsArray.getJSONObject(x);
-//						if(currObj.get("park_id").toString().equals(parkId) && currObj.get("activityid").toString().equals(activityId)){
-//							objectsArray.add(currObj.get("name").toString());
-//						}
-//				} catch (JSONException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		
-//			}
-//						
-//			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, objectsArray);
-//			objectsList.setAdapter(parksAdapter);
-//			
-//			objectsList.setOnItemClickListener(new OnItemClickListener()
-//				{
-//					@Override
-//					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
-//					{
-//						TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
-//						Intent myIntent = new Intent(context, ActivityDetail.class);
-//						myIntent.putExtra("activityName", textView.getText().toString());
-//						myIntent.putExtra("parkId", parkId);
-//						myIntent.putExtra("objectName", textView.getText().toString());
-//						context.startActivity(myIntent);
-//					}
-//				});
-
-			
-			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, activitiesSubArray);
-			parksList.setAdapter(parksAdapter);
-			
-			parksList.setOnItemClickListener(new OnItemClickListener()
+			objectsList.setOnItemClickListener(new OnItemClickListener()
 				{
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
 					{
 						TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
-						Intent myIntent = new Intent(context, ActivityOption.class);
+						Intent myIntent = new Intent(context, ActivityDetail.class);
 						myIntent.putExtra("activityName", textView.getText().toString());
 						myIntent.putExtra("parkId", parkId);
+						myIntent.putExtra("objectName", textView.getText().toString());
 						context.startActivity(myIntent);
 					}
 				});
+		}
+
+//			
+//			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, activitiesSubArray);
+//			parksList.setAdapter(parksAdapter);
+//			
+//			parksList.setOnItemClickListener(new OnItemClickListener()
+//				{
+//					@Override
+//					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
+//					{
+//						TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
+//						Intent myIntent = new Intent(context, ActivityOption.class);
+//						myIntent.putExtra("activityName", textView.getText().toString());
+//						myIntent.putExtra("parkId", parkId);
+//						context.startActivity(myIntent);
+//					}
+//				});
 
 		        
 			
@@ -226,5 +227,11 @@ public class ActivityList extends SherlockActivity {
 		}
 		
 	}
+	
+//	private void collapseView() {
+//        m_vwText.setMaxLines(2);
+//        m_vwText.setEllipsize(TruncateAt.END);
+//        m_vwExpandButton.setText(EXPAND);
+//    }
 
 }
