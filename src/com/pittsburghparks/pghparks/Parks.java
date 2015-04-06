@@ -28,7 +28,7 @@ public class Parks extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		context = getActivity();
-		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(context,ActivityOption.class));
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(context,ActivityList.class));
 		try {
 			if(Data.parksArray == null) {
 				Intent myIntent = new Intent(context, Main.class);

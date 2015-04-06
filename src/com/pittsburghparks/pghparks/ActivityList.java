@@ -18,10 +18,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
+import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ActivityList extends SherlockActivity {
 	Context context;
@@ -69,6 +74,59 @@ public class ActivityList extends SherlockActivity {
  
         // setting list adapter
         expListView.setAdapter(listAdapter);
+        
+     // Listview Group click listener
+ 		expListView.setOnGroupClickListener(new OnGroupClickListener() {
+
+ 			@Override
+ 			public boolean onGroupClick(ExpandableListView parent, View v,
+ 					int groupPosition, long id) {
+ 				// Toast.makeText(getApplicationContext(),
+ 				// "Group Clicked " + listDataHeader.get(groupPosition),
+ 				// Toast.LENGTH_SHORT).show();
+ 				return false;
+ 			}
+ 		});
+
+ 		// Listview Group expanded listener
+ 		expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
+
+ 			@Override
+ 			public void onGroupExpand(int groupPosition) {
+ 				Toast.makeText(getApplicationContext(),
+ 						listDataHeader.get(groupPosition) + " Expanded",
+ 						Toast.LENGTH_SHORT).show();
+ 			}
+ 		});
+
+ 		// Listview Group collasped listener
+ 		expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
+
+ 			@Override
+ 			public void onGroupCollapse(int groupPosition) {
+ 				Toast.makeText(getApplicationContext(),
+ 						listDataHeader.get(groupPosition) + " Collapsed",
+ 						Toast.LENGTH_SHORT).show();
+
+ 			}
+ 		});
+
+ 		// Listview on child click listener
+ 		expListView.setOnChildClickListener(new OnChildClickListener() {
+
+ 			@Override
+ 			public boolean onChildClick(ExpandableListView parent, View v,
+ 					int groupPosition, int childPosition, long id) {
+ 				// TODO Auto-generated method stub
+ 				
+ 				Intent myIntent = new Intent(context, ActivityDetail.class);
+				myIntent.putExtra("activityName", listDataHeader.get(groupPosition));
+				myIntent.putExtra("parkId", parkId);
+				myIntent.putExtra("objectName", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition));
+				context.startActivity(myIntent);
+ 				return false;
+ 			}
+ 		});
 		
 		// ABOUT TEXT
 		
@@ -91,8 +149,7 @@ public class ActivityList extends SherlockActivity {
 //		TextView about = (TextView) findViewById(R.id.about);
 //		about.setText(text);
 		//ListView parksList = (ListView) findViewById(R.id.park_activities_list);	
-		
-		//NEW CONTENT GOES HERE 
+
 			
 		}
 		
@@ -191,23 +248,6 @@ public class ActivityList extends SherlockActivity {
 			}
 			listDataChild.put(listDataHeader.get(i), child); // Header, Child data
 			
-			
-//			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, objectsArray);
-//			objects.setAdapter(parksAdapter);
-//			
-//			objectsList.setOnItemClickListener(new OnItemClickListener()
-//				{
-//					@Override
-//					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
-//					{
-//						TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
-//						Intent myIntent = new Intent(context, ActivityDetail.class);
-//						myIntent.putExtra("activityName", textView.getText().toString());
-//						myIntent.putExtra("parkId", parkId);
-//						myIntent.putExtra("objectName", textView.getText().toString());
-//						context.startActivity(myIntent);
-//					}
-//				});
 		}
 
 	
