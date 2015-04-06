@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -44,13 +45,17 @@ public class ActivityOption extends SherlockFragmentActivity {
 		}
 		
 		super.onCreate(savedInstanceState);
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setLogo(R.drawable.ic_launcher);
+		actionBar.setDisplayUseLogoEnabled(true);
+		actionBar.setDisplayShowHomeEnabled(true);
 		setContentView(R.layout.activity_option);
         
 		
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
-        TextView title = (TextView) actionBarView.findViewById(R.id.title);
-        title.setText("Parks");
+
 
 		final Intent intent = getIntent();
 		parkId = intent.getStringExtra("parkId");

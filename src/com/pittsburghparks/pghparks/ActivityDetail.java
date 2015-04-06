@@ -58,12 +58,6 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		
 		setContentView(R.layout.activity_detail);
         
-		
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
-//        TextView title = (TextView) actionBarView.findViewById(R.id.title);
-//        title.setText("Parks");
-//		
 		final Intent intent = getIntent();
 		String txt = "";
 		double lat = 0;

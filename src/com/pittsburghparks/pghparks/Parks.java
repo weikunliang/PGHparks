@@ -41,8 +41,7 @@ public class Parks extends SherlockFragment {
 		
 		View rootView = inflater.inflate(R.layout.parks, container, false);
         View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
-        TextView title = (TextView) actionBarView.findViewById(R.id.title);
-        title.setText("Parks");
+
         
         ArrayList<String> parksArray = new ArrayList<String>();
 		parksIdArray = new ArrayList<String>();
@@ -67,6 +66,7 @@ public class Parks extends SherlockFragment {
 		
 		ArrayAdapter<String> parksAdapter=new ArrayAdapter<String>(context, R.layout.parks_list, R.id.park_name, parksArray);
 		parksList.setAdapter(parksAdapter);
+		
 		parksList.setOnItemClickListener(new OnItemClickListener()
 			{
 				@Override

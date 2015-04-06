@@ -30,9 +30,6 @@ public class Tab extends SherlockFragmentActivity {
 		actionBar.setDisplayShowHomeEnabled(true);
 		
  
-		// Hide Actionbar Title
-		//actionBar.setDisplayShowTitleEnabled(false);
- 
 		// Create Actionbar Tabs
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
  
