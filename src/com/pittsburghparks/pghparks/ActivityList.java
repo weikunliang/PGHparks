@@ -1,6 +1,8 @@
 package com.pittsburghparks.pghparks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +28,10 @@ public class ActivityList extends SherlockActivity {
 	Activity activity;
 	String parkName, parkId;
 	String activityId, activityName;
+	ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -49,12 +56,52 @@ public class ActivityList extends SherlockActivity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setLogo(R.drawable.ic_launcher);
 		actionBar.setDisplayUseLogoEnabled(true);
-		actionBar.setDisplayShowHomeEnabled(true);		
+		actionBar.setDisplayShowHomeEnabled(true);	
+		setContentView(R.layout.activity_list); 
 		
-		setContentView(R.layout.activity_list);   
-        
+		// get the listview
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+ 
+        // preparing list data
+        prepareListData();
+ 
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+ 
+        // setting list adapter
+        expListView.setAdapter(listAdapter);
+		
+		// ABOUT TEXT
+		
+//		String text = "";
+//		JSONObject currPark;
+//		for(int y = 0; y < Data.parksArray.length(); y ++){
+//			try {
+//				currPark = Data.parksArray.getJSONObject(y);
+//				if(currPark.get("id").toString().equals(parkId)){
+//					text = currPark.get("notes").toString();
+//				}
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+		
+//		TextView parkTitle = (TextView) findViewById(R.id.park_name);
+//		parkTitle.setText(parkName);
+//		TextView about = (TextView) findViewById(R.id.about);
+//		about.setText(text);
+		//ListView parksList = (ListView) findViewById(R.id.park_activities_list);	
+		
+		//NEW CONTENT GOES HERE 
 			
-		ArrayList<String> activitiesSubArrayAll = new ArrayList<String>();
+		}
+		
+	private void prepareListData() {
+		listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        List<String> child;
+        
+        ArrayList<String> activitiesSubArrayAll = new ArrayList<String>();
 		JSONObject currActivity;
 		for(int i = 0; i<Data.activitiesArray.length(); i++)
 		{
@@ -91,6 +138,7 @@ public class ActivityList extends SherlockActivity {
 					currObject = Data.objectsArray.getJSONObject(z);
 					if(currObject.get("activityid").toString().equals(activity.get("id").toString())){
 						activitiesSubArray.add(activitiesSubArrayAll.get(x));
+						listDataHeader.add(activitiesSubArrayAll.get(x));
 						break;
 					}
 				}
@@ -101,36 +149,16 @@ public class ActivityList extends SherlockActivity {
 			}
 		}
 		
-		// ABOU TEXT
-		
-//		String text = "";
-//		JSONObject currPark;
-//		for(int y = 0; y < Data.parksArray.length(); y ++){
-//			try {
-//				currPark = Data.parksArray.getJSONObject(y);
-//				if(currPark.get("id").toString().equals(parkId)){
-//					text = currPark.get("notes").toString();
-//				}
-//			} catch (JSONException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		
-//		TextView parkTitle = (TextView) findViewById(R.id.park_name);
-//		parkTitle.setText(parkName);
-//		TextView about = (TextView) findViewById(R.id.about);
-//		about.setText(text);
-		//ListView parksList = (ListView) findViewById(R.id.park_activities_list);	
-		
-		//NEW CONTENT GOES HERE
 		for(int i=0; i<activitiesSubArray.size(); i++){
-			TextView title = (TextView) findViewById(R.id.title);
-			ListView objectsList = (ListView) findViewById(R.id.park_activities_list);	
+			//TextView title = (TextView) findViewById(R.id.title);
+			//ListView objectsList = (ListView) findViewById(R.id.park_activities_list);	
 		
 			activityName = activitiesSubArray.get(i);
-			title.setText(activitiesSubArray.get(i));
+			//title.setText(activitiesSubArray.get(i));
 			
+			child = new ArrayList<String>();
+			
+			// Figures out the activity id given the activity name and park id
 			JSONObject currAct2;
 			for(int j = 0; j<Data.activitiesArray.length(); j++){
 				try {
@@ -145,6 +173,7 @@ public class ActivityList extends SherlockActivity {
 				}
 			}
 			
+			// Adds the objects into a new array based on the given park id and activity id
 			ArrayList<String> objectsArray = new ArrayList<String>();
 			JSONObject currObj;
 			for(int x = 0; x<Data.objectsArray.length(); x++){
@@ -152,6 +181,7 @@ public class ActivityList extends SherlockActivity {
 						currObj = Data.objectsArray.getJSONObject(x);
 						if(currObj.get("park_id").toString().equals(parkId) && currObj.get("activityid").toString().equals(activityId)){
 							objectsArray.add(currObj.get("name").toString());
+							child.add(currObj.get("name").toString());
 						}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -159,46 +189,29 @@ public class ActivityList extends SherlockActivity {
 				}
 		
 			}
-						
-			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, objectsArray);
-			objectsList.setAdapter(parksAdapter);
+			listDataChild.put(listDataHeader.get(i), child); // Header, Child data
 			
-			objectsList.setOnItemClickListener(new OnItemClickListener()
-				{
-					@Override
-					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
-					{
-						TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
-						Intent myIntent = new Intent(context, ActivityDetail.class);
-						myIntent.putExtra("activityName", textView.getText().toString());
-						myIntent.putExtra("parkId", parkId);
-						myIntent.putExtra("objectName", textView.getText().toString());
-						context.startActivity(myIntent);
-					}
-				});
-		}
-
+			
+//			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, objectsArray);
+//			objects.setAdapter(parksAdapter);
 //			
-//			ArrayAdapter<String> parksAdapter = new ArrayAdapter<String>(context, R.layout.single_park_sub_lists, R.id.sub_item_text, activitiesSubArray);
-//			parksList.setAdapter(parksAdapter);
-//			
-//			parksList.setOnItemClickListener(new OnItemClickListener()
+//			objectsList.setOnItemClickListener(new OnItemClickListener()
 //				{
 //					@Override
 //					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
 //					{
 //						TextView textView = (TextView) arg1.findViewById(R.id.sub_item_text);
-//						Intent myIntent = new Intent(context, ActivityOption.class);
+//						Intent myIntent = new Intent(context, ActivityDetail.class);
 //						myIntent.putExtra("activityName", textView.getText().toString());
 //						myIntent.putExtra("parkId", parkId);
+//						myIntent.putExtra("objectName", textView.getText().toString());
 //						context.startActivity(myIntent);
 //					}
 //				});
-
-		        
-			
 		}
-		
+
+	
+	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -227,11 +240,4 @@ public class ActivityList extends SherlockActivity {
 		}
 		
 	}
-	
-//	private void collapseView() {
-//        m_vwText.setMaxLines(2);
-//        m_vwText.setEllipsize(TruncateAt.END);
-//        m_vwExpandButton.setText(EXPAND);
-//    }
-
 }

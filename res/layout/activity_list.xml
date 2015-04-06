@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/park_name"
         /> -->
-    <TextView
+    <!-- <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -27,6 +27,11 @@
             android:id="@+id/park_activities_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title" />
+            android:layout_below="@+id/title" /> -->
+            
+    <ExpandableListView
+        android:id="@+id/lvExp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>  
 
 </LinearLayout>
