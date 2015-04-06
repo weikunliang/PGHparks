@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -49,30 +50,20 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		}
 		
 		super.onCreate(savedInstanceState);
+		
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setLogo(R.drawable.ic_launcher);
+		actionBar.setDisplayUseLogoEnabled(true);
+		actionBar.setDisplayShowHomeEnabled(true);
+		
 		setContentView(R.layout.activity_detail);
         
 		
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
-        TextView title = (TextView) actionBarView.findViewById(R.id.title);
-        title.setText("Parks");
-        
-//        DisplayMetrics metrics = new DisplayMetrics();
-//		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//		ImageView metricIV = (ImageView) findViewById(R.id.image);
-//		float heightRatio = metrics.heightPixels*(metricIV.getLayoutParams().height/metrics.density);
-//		float newPX = (heightRatio/1184)*metrics.density;
-//		metricIV.getLayoutParams().height = (int) (newPX+20.5f);
-//        
-//		DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-//		.cacheInMemory()
-//		.cacheOnDisc()
-//		.build();
-//		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-//																		.defaultDisplayImageOptions(defaultOptions)
-//																		.build();
-//		imageLoader.init(config);
-		
+//        TextView title = (TextView) actionBarView.findViewById(R.id.title);
+//        title.setText("Parks");
+//		
 		final Intent intent = getIntent();
 		String txt = "";
 		double lat = 0;
@@ -99,10 +90,16 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		final double longitude = lon;
 		
 		TextView content = (TextView) findViewById(R.id.description);
-		//ImageView mainImageIV = (ImageView) findViewById(R.id.image);
+		TextView object = (TextView) findViewById(R.id.title);
 		if(content == null){
 			Log.i("CONTENT", "NULLL");
 		}
+		
+		if(object == null){
+			Log.i("TITLE", "NULL");
+		}
+		
+		object.setText(objectName);
 		content.setText(txt);
 		
 		Button open = (Button) findViewById(R.id.open);
