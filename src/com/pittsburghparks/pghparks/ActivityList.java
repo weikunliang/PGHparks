@@ -15,18 +15,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ActivityList extends SherlockActivity {
 	Context context;
@@ -67,8 +67,12 @@ public class ActivityList extends SherlockActivity {
 		// get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
         
+        ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
         
-        //expListView.expandGroup(0);
+        
+        mainScrollView.fullScroll(ScrollView.FOCUS_UP);
+        mainScrollView.pageScroll(View.FOCUS_UP);
+        mainScrollView.smoothScrollTo(0,0);
  
         // preparing list data
         prepareListData();
@@ -126,35 +130,15 @@ public class ActivityList extends SherlockActivity {
  			}
  		});
 		
-		// ABOUT TEXT
 		
-//		String text = "";
-//		JSONObject currPark;
-//		for(int y = 0; y < Data.parksArray.length(); y ++){
-//			try {
-//				currPark = Data.parksArray.getJSONObject(y);
-//				if(currPark.get("id").toString().equals(parkId)){
-//					text = currPark.get("notes").toString();
-//				}
-//			} catch (JSONException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		
-//		TextView parkTitle = (TextView) findViewById(R.id.park_name);
-//		parkTitle.setText(parkName);
-//		TextView about = (TextView) findViewById(R.id.about);
-//		about.setText(text);
-		//ListView parksList = (ListView) findViewById(R.id.park_activities_list);	
-
-			
 		}
 		
 	private void prepareListData() {
 		listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         List<String> child;
+        int countChild = 0;
+        int countParent = 0;
         
         ArrayList<String> activitiesSubArrayAll = new ArrayList<String>();
 		JSONObject currActivity;
@@ -202,14 +186,13 @@ public class ActivityList extends SherlockActivity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		} 
 		
-		for(int i=0; i<activitiesSubArray.size(); i++){
-			//TextView title = (TextView) findViewById(R.id.title);
-			//ListView objectsList = (ListView) findViewById(R.id.park_activities_list);	
+		countParent = activitiesSubArray.size();
+		
+		for(int i=0; i<activitiesSubArray.size(); i++){	
 		
 			activityName = activitiesSubArray.get(i);
-			//title.setText(activitiesSubArray.get(i));
 			
 			child = new ArrayList<String>();
 			
@@ -237,6 +220,7 @@ public class ActivityList extends SherlockActivity {
 						if(currObj.get("park_id").toString().equals(parkId) && currObj.get("activityid").toString().equals(activityId)){
 							objectsArray.add(currObj.get("name").toString());
 							child.add(currObj.get("name").toString());
+							countChild += 1;
 						}
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -247,8 +231,56 @@ public class ActivityList extends SherlockActivity {
 			listDataChild.put(listDataHeader.get(i), child); // Header, Child data
 			
 		}
+		
+		// About text for the park
+		
+		String text = "";
+		JSONObject currPark;
+		for(int y = 0; y < Data.parksArray.length(); y ++){
+			try {
+				currPark = Data.parksArray.getJSONObject(y);
+				if(currPark.get("id").toString().equals(parkId)){
+					text = currPark.get("notes").toString();
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		TextView name = (TextView) findViewById(R.id.name);
+		TextView content = (TextView) findViewById(R.id.content);
+		name.setText(parkName);
+		content.setText(text);
+		
+		// Finds the height of the Expandedlistview
+		
+		int h = 0;
+		
+		
+		
+		int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1000, getResources().getDisplayMetrics());
+		// Gets linearlayout
+		ExpandableListView layout = (ExpandableListView)findViewById(R.id.lvExp);
+		// Gets the layout params that will allow you to resize the layout
+		LayoutParams params = layout.getLayoutParams();
+		// Changes the height and width to the specified *pixels*
+		params.height = height;
+		
 
 	
+	}
+	
+	public int dpToPx(int dp) {
+	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+	    int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));       
+	    return px;
+	}
+	
+	public int pxToDp(int px) {
+	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+	    int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+	    return dp;
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) 
