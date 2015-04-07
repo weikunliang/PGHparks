@@ -23,6 +23,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -44,6 +45,7 @@ public class ActivityList extends SherlockActivity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    String text = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)  {
@@ -136,6 +138,19 @@ public class ActivityList extends SherlockActivity {
  				return false;
  			}
  		});
+ 		
+ 		Button more = (Button) findViewById(R.id.more);
+		
+		more.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent myIntent = new Intent(getApplicationContext(),About.class);
+				myIntent.putExtra("parkName", parkName);
+				myIntent.putExtra("info", text);
+				startActivity(myIntent);
+			}			
+		});
 		
 		
 		}
@@ -253,7 +268,6 @@ public class ActivityList extends SherlockActivity {
 		
 		// About text for the park
 		
-		String text = "";
 		JSONObject currPark;
 		for(int y = 0; y < Data.parksArray.length(); y ++){
 			try {

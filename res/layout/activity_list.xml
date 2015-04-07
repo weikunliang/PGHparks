@@ -11,8 +11,11 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	   
-	    android:orientation="vertical" 
-	    android:weightSum="1">
+	    android:orientation="vertical" >
+	    
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	    	android:layout_height="match_parent">
 	    
 	    <TextView
 	        android:id="@+id/name"
@@ -25,15 +28,26 @@
 	
 	    <TextView
 	        android:id="@+id/content"
-	        android:minLines="1"
-	        android:maxLines = "5"
-	        android:layout_width="wrap_content"
+	        android:layout_width="220dp"
 	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="0dp"
 	        android:layout_marginLeft="20dp"
-	        android:layout_marginRight="20dp"
-	        android:textSize="16sp"
 	        android:layout_marginTop="10dp"
-	        android:layout_marginBottom="0dp"/>
+	        android:layout_below="@+id/name"
+	        android:maxLines="5"
+	        android:minLines="1"
+	        android:textSize="16sp" />
+	    
+	    <ImageView
+	        android:id="@+id/pic"
+	        android:layout_width="80dp"
+	        android:layout_height="80dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="5dp"
+	        android:layout_marginTop="10dp"
+	        android:layout_toRightOf="@+id/content"
+	        android:layout_alignTop="@+id/name"
+	        android:src="@drawable/schenley_map" />
 	    
 	    <Button
 	        android:id="@+id/more"
@@ -45,8 +59,22 @@
 	        android:textColor="#478FCC"
 	        android:layout_marginTop="0dp"
 	        android:layout_marginBottom="15dp"
+	        android:layout_below="@+id/content"
 	        android:text="see more..." />
 
+	    <Button
+	        android:id="@+id/photo"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/pic"
+	        android:layout_below="@+id/pic"
+	        android:background="@android:color/transparent"
+	        android:text="Photos"
+	        android:textSize="15sp"
+	        android:textColor="#478FCC" />
+	    
+	    </RelativeLayout>
 
 	    <ExpandableListView
 	        android:id="@+id/lvExp"

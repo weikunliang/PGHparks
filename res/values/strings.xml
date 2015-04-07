@@ -10,7 +10,9 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="title_activity_activity_detail">ActivityDetail</string>
+
     <color name="action_bar_back">#D6D6D5</color>
-    
+
+    <string name="title_activity_about">About</string>
 
 </resources>
