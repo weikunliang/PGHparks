@@ -40,7 +40,6 @@ public class Parks extends SherlockFragment {
 		}
 		
 		View rootView = inflater.inflate(R.layout.parks, container, false);
-        View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
 
         
         ArrayList<String> parksArray = new ArrayList<String>();

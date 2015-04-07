@@ -1,8 +1,6 @@
 package com.pittsburghparks.pghparks;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.pittsburghparks.pghparks.Donate.MyWebViewClient;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +12,7 @@ import android.webkit.WebViewClient;
 
 public class Events extends SherlockFragment {
 
+	@SuppressWarnings("deprecation")
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	    View mainView = (View) inflater.inflate(R.layout.donate, container, false);
 	    WebView webView = (WebView) mainView.findViewById(R.id.web);

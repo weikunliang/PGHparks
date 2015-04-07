@@ -5,7 +5,6 @@ import com.actionbarsherlock.app.ActionBar.Tab;
  
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.RelativeLayout;
  
 public class TabListener implements ActionBar.TabListener {
  

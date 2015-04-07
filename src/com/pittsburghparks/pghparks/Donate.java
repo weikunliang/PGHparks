@@ -13,6 +13,7 @@ import android.webkit.WebViewClient;
 
 public class Donate extends SherlockFragment {
 	
+	@SuppressWarnings("deprecation")
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	    View mainView = (View) inflater.inflate(R.layout.donate, container, false);
 	    WebView webView = (WebView) mainView.findViewById(R.id.web);
