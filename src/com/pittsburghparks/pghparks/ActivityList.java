@@ -14,12 +14,19 @@ import com.actionbarsherlock.view.Menu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.Button;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
@@ -267,19 +274,31 @@ public class ActivityList extends SherlockActivity {
 		
 		// Finds the height of the Expandedlistview
 		
-		float h = 0;
-
+		int h = 0;
 		
-		int titleHeight = dpToPx(20);
-		int contentHeight = dpToPx(16*4);
-		int headerSize = dpToPx(29);
-		int title = (countParent) * headerSize; 
-		int itemSize = dpToPx(34);
-		int item = itemSize * countChild;
-		int padding = 10;
+		Rect bounds = new Rect();
+		Rect bounds2 = new Rect();
 		
-		h = (float) ((titleHeight + contentHeight + title + item) * 0.45);
+		name.getPaint().getTextBounds(name.getText().toString(), 0, name.getText().length(), bounds);
+		content.getPaint().getTextBounds(content.getText().toString(), 0, content.getText().length(), bounds2);
+		int titleHeight = pxToDp(bounds.height());
+		int contentHeight = pxToDp(bounds2.height() * 5);
+		int padding = 37;
 		
+		int header = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 15, getResources().getDisplayMetrics());
+		int element = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 17, getResources().getDisplayMetrics());
+		
+		int headerText = pxToDp(header) * countParent;
+		int contentText = pxToDp(element) * countChild;
+		
+		int headerPadding = (14 + 3) * countParent;
+		int itemPadding = (20 + 3) * countChild;
+		
+		int button = titleHeight;
+		
+		h = titleHeight + contentHeight + headerText + contentText + headerPadding + itemPadding + padding + button + 20;
+		
+		//Convert from DP to PX
 		int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, h, getResources().getDisplayMetrics());
 		// Gets linearlayout
 		ExpandableListView layout = (ExpandableListView)findViewById(R.id.lvExp);
