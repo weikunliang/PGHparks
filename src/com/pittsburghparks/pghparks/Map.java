@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -35,6 +36,9 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	private GoogleMap googleMap;
 	private LocationManager locationManager;
 	private OnLocationChangedListener mListener;
+	private String provider;
+	LatLng coordinate;
+	boolean window = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +59,8 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 
 	    googleMap = mMapView.getMap();
 	    // latitude and longitude
-	    double latitude = 40.4433;
-	    double longitude = -79.9436;
+	    double latitude = 40;
+	    double longitude = 40;
 	    
 	    double latArg = 0;
 	    double lonArg = 0;
@@ -83,6 +87,7 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 				Marker m = googleMap.addMarker(marker);
 				if(latitude == latArg && longitude == lonArg){
 					m.showInfoWindow();
+					window = true;
 				}
 				googleMap.setOnInfoWindowClickListener(this);
 				
@@ -92,7 +97,6 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 			}
 		}
 
-	    
 	    locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 	    
         if(locationManager != null)
@@ -117,17 +121,46 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
         {
             //Show some generic error dialog because something must have gone wrong with location manager.
         }
-        setUpMap();
+        
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location current = locationManager.getLastKnownLocation(provider);
+        
+        if (current != null) {
+            onLocationChanged(current);
+        } else {
 
+            //do something
+        }
+
+        setUpMap();
 	    // Perform any camera updates here
         
+        CameraPosition cameraPosition;
+        googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
         
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latArg, lonArg)).zoom(15).build();
+        if(window){
+	        cameraPosition = new CameraPosition.Builder().target(new LatLng(latArg, lonArg)).zoom(15).build();
+        } else {
+        	cameraPosition = new CameraPosition.Builder().target(coordinate).zoom(15).build();
+	        
+        }
+        
         googleMap.animateCamera(CameraUpdateFactory
-        .newCameraPosition(cameraPosition));
+    	        .newCameraPosition(cameraPosition));
 
 	    return v;
 	}
+	
+	private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+	    @Override
+	    public void onMyLocationChange(Location location) {
+	        LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
+	        if(googleMap != null){
+	        	googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(current, 16.0f));
+	        }
+	    }
+	};
 	
 	
 	public void onInfoWindowClick(Marker marker){
@@ -146,6 +179,7 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	public void onResume() {
 	    super.onResume();
 	    mMapView.onResume();
+	    locationManager.requestLocationUpdates(provider, 400, 1, this);
         if(locationManager != null)
         {
             googleMap.setMyLocationEnabled(true);
@@ -191,9 +225,14 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
     {
         if( mListener != null )
         {
-            mListener.onLocationChanged( location );
+            mListener.onLocationChanged(location);
  
             googleMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+        }
+  
+        coordinate = new LatLng(location.getLatitude(), location.getLongitude());
+        if(googleMap != null){
+        	googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 16.0f));
         }
     }
  
