@@ -61,6 +61,7 @@
 		        android:layout_below="@+id/pic"
 		        android:layout_alignLeft="@+id/pic"
 		        android:background="@android:color/transparent"
+		        android:paddingLeft="14dp"
 		        android:text="Photos"
 		        android:textSize="15sp"
 		        android:textColor="#478FCC" />
