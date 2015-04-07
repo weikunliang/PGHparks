@@ -132,6 +132,18 @@ public class ActivityList extends SherlockActivity {
 		
 		
 		}
+	
+	public int dpToPx(int dp) {
+	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+	    int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));       
+	    return px;
+	}
+	
+	public int pxToDp(int px) {
+	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+	    int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+	    return dp;
+	}
 		
 	private void prepareListData() {
 		listDataHeader = new ArrayList<String>();
@@ -255,11 +267,20 @@ public class ActivityList extends SherlockActivity {
 		
 		// Finds the height of the Expandedlistview
 		
-		int h = 0;
+		float h = 0;
+
 		
+		int titleHeight = dpToPx(20);
+		int contentHeight = dpToPx(16*4);
+		int headerSize = dpToPx(29);
+		int title = (countParent) * headerSize; 
+		int itemSize = dpToPx(34);
+		int item = itemSize * countChild;
+		int padding = 10;
 		
+		h = (float) ((titleHeight + contentHeight + title + item) * 0.45);
 		
-		int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1000, getResources().getDisplayMetrics());
+		int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, h, getResources().getDisplayMetrics());
 		// Gets linearlayout
 		ExpandableListView layout = (ExpandableListView)findViewById(R.id.lvExp);
 		// Gets the layout params that will allow you to resize the layout
@@ -269,18 +290,6 @@ public class ActivityList extends SherlockActivity {
 		
 
 	
-	}
-	
-	public int dpToPx(int dp) {
-	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-	    int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));       
-	    return px;
-	}
-	
-	public int pxToDp(int px) {
-	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-	    int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-	    return dp;
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) 

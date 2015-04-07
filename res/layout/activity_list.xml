@@ -20,7 +20,8 @@
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="20dp"
 		        android:layout_marginTop="15dp"
-		        android:textColor="#566D30" />
+		        android:textSize="20sp"
+		        android:textColor="#000000" />
 		
 		    <TextView
 		        android:id="@+id/content"
@@ -30,7 +31,9 @@
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="20dp"
 		        android:layout_marginRight="20dp"
-		        android:layout_marginTop="29dp"/>
+		        android:textSize="16sp"
+		        android:layout_marginTop="20dp"
+		        android:layout_marginBottom="20dp"/>
 
 
 		    <ExpandableListView
