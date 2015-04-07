@@ -1473,7 +1473,7 @@ containing a value of this type.
         public static final int match_parent=0x7f05001d;
         public static final int menu_settings=0x7f050065;
         public static final int monochrome=0x7f050024;
-        public static final int more=0x7f050053;
+        public static final int more=0x7f050054;
         public static final int name=0x7f050050;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050001;
@@ -1482,7 +1482,7 @@ containing a value of this type.
         public static final int park_arrow=0x7f050062;
         public static final int park_name=0x7f050061;
         public static final int parks_list=0x7f050060;
-        public static final int photo=0x7f050054;
+        public static final int photo=0x7f050053;
         public static final int pic=0x7f050052;
         public static final int production=0x7f050018;
         public static final int sandbox=0x7f050019;
