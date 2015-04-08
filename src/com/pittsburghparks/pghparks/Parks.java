@@ -10,12 +10,15 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -61,25 +64,93 @@ public class Parks extends SherlockFragment {
 			}
 			
 		}
-		ListView parksList = (ListView)rootView.findViewById(R.id.parks_list);
-		
-		ArrayAdapter<String> parksAdapter=new ArrayAdapter<String>(context, R.layout.parks_list, R.id.park_name, parksArray);
-		parksList.setAdapter(parksAdapter);
-		
-		parksList.setOnItemClickListener(new OnItemClickListener()
-			{
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
-				{
-					
-					TextView textView = (TextView) arg1.findViewById(R.id.park_name); 
-					Intent myIntent = new Intent(getActivity(), ActivityList.class);
-					myIntent.putExtra("parkName", textView.getText().toString());
-					myIntent.putExtra("parkId", parksIdArray.get(arg2));
-					startActivity(myIntent);
-				}
-			});		
+//		ListView parksList = (ListView)rootView.findViewById(R.id.parks_list);
+//		
+//		ArrayAdapter<String> parksAdapter=new ArrayAdapter<String>(context, R.layout.parks_list, R.id.park_name, parksArray);
+//		parksList.setAdapter(parksAdapter);
+//		
+//		parksList.setOnItemClickListener(new OnItemClickListener()
+//			{
+//				@Override
+//				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
+//				{
+//					
+//					TextView textView = (TextView) arg1.findViewById(R.id.park_name); 
+//					Intent myIntent = new Intent(getActivity(), ActivityList.class);
+//					myIntent.putExtra("parkName", textView.getText().toString());
+//					myIntent.putExtra("parkId", parksIdArray.get(arg2));
+//					startActivity(myIntent);
+//				}
+//			});		
 	
+		Button schenley = (Button) rootView.findViewById(R.id.schenley);
+		Button frick = (Button) rootView.findViewById(R.id.frick);
+		Button highland = (Button) rootView.findViewById(R.id.highland);
+		Button emerald = (Button) rootView.findViewById(R.id.emerald);
+		Button riverview = (Button) rootView.findViewById(R.id.riverview);
+		
+		schenley.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) 
+            {
+            	
+				Intent myIntent = new Intent(getActivity(), ActivityList.class);
+				myIntent.putExtra("parkName", "Schenley Park");
+				myIntent.putExtra("parkId", "1");
+				startActivity(myIntent);
+
+            }
+        });
+		
+		frick.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) 
+            {
+            	Intent myIntent = new Intent(getActivity(), ActivityList.class);
+				myIntent.putExtra("parkName", "Frick Park");
+				myIntent.putExtra("parkId", "4");
+				startActivity(myIntent);
+
+            }
+        });
+		
+		emerald.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) 
+            {
+            	Intent myIntent = new Intent(getActivity(), ActivityList.class);
+				myIntent.putExtra("parkName", "Emerald View Park");
+				myIntent.putExtra("parkId", "5");
+				startActivity(myIntent);
+
+            }
+        });
+		
+		highland.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) 
+            {
+            	Intent myIntent = new Intent(getActivity(), ActivityList.class);
+				myIntent.putExtra("parkName", "Highland Park");
+				myIntent.putExtra("parkId", "2");
+				startActivity(myIntent);
+
+            }
+        });
+		
+		riverview.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) 
+            {
+            	Intent myIntent = new Intent(getActivity(), ActivityList.class);
+				myIntent.putExtra("parkName", "Riverview Park");
+				myIntent.putExtra("parkId", "3");
+				startActivity(myIntent);
+
+            }
+        });
+		
+		
         return rootView;
     }
 	
