@@ -146,6 +146,16 @@ public class ActivityList extends SherlockActivity {
 			}			
 		});
 		
+		Button photo = (Button) findViewById(R.id.photo);
+		photo.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent myIntent = new Intent(getApplicationContext(),Photo.class);
+				startActivity(myIntent);
+			}			
+		});
+		
 		
 		}
 	

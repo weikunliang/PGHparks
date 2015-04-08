@@ -79,13 +79,6 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		
 		TextView content = (TextView) findViewById(R.id.description);
 		TextView object = (TextView) findViewById(R.id.title);
-		if(content == null){
-			Log.i("CONTENT", "NULLL");
-		}
-		
-		if(object == null){
-			Log.i("TITLE", "NULL");
-		}
 		
 		object.setText(objectName);
 		content.setText(txt);
