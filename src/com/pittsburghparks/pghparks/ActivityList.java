@@ -152,6 +152,8 @@ public class ActivityList extends SherlockActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent myIntent = new Intent(getApplicationContext(),Photo.class);
+				myIntent.putExtra("parkId", parkId);
+				myIntent.putExtra("parkName", parkName);
 				startActivity(myIntent);
 			}			
 		});

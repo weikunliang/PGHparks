@@ -64,25 +64,7 @@ public class Parks extends SherlockFragment {
 				e.printStackTrace();
 			}
 			
-		}
-//		ListView parksList = (ListView)rootView.findViewById(R.id.parks_list);
-//		
-//		ArrayAdapter<String> parksAdapter=new ArrayAdapter<String>(context, R.layout.parks_list, R.id.park_name, parksArray);
-//		parksList.setAdapter(parksAdapter);
-//		
-//		parksList.setOnItemClickListener(new OnItemClickListener()
-//			{
-//				@Override
-//				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) 
-//				{
-//					
-//					TextView textView = (TextView) arg1.findViewById(R.id.park_name); 
-//					Intent myIntent = new Intent(getActivity(), ActivityList.class);
-//					myIntent.putExtra("parkName", textView.getText().toString());
-//					myIntent.putExtra("parkId", parksIdArray.get(arg2));
-//					startActivity(myIntent);
-//				}
-//			});		
+		}	
 	
 		ImageButton schenley = (ImageButton) rootView.findViewById(R.id.schenley);
 		ImageButton frick = (ImageButton) rootView.findViewById(R.id.frick);
