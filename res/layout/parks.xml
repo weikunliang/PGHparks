@@ -1,4 +1,5 @@
-<!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
@@ -11,42 +12,88 @@
 
     </ListView>
  
-</RelativeLayout> -->
+</RelativeLayout>
+-->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_width="fill_parent" 
+    		android:layout_height="fill_parent"
+    		xmlns:tools="http://schemas.android.com/tools"
+    		xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <Button
+    <ImageButton
         android:id="@+id/emerald"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emerald" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/emerald_view" 
+        android:adjustViewBounds="true"
+    	android:cropToPadding="false"
+    	android:scaleType="fitXY"
+        android:background="#00000000"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/frick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="frick" />
+        android:layout_centerHorizontal="true"
+        android:background="#00000000"
+        android:adjustViewBounds="true"
+    	android:cropToPadding="false"
+    	android:scaleType="fitXY"
+    	android:layout_below="@+id/emerald"
+        android:src="@drawable/frick" />
 
-    <Button
+    <ImageButton
         android:id="@+id/riverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="riverview" />
+        android:layout_centerHorizontal="true"
+        android:background="#00000000"
+        android:adjustViewBounds="true"
+    	android:cropToPadding="false"
+    	android:layout_below="@+id/frick"
+    	android:scaleType="fitXY"
+        android:src="@drawable/riverview" />
 
-    <Button
+    <ImageButton
         android:id="@+id/highland"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="highland" />
-    
-    <Button
+        android:layout_centerHorizontal="true"
+        android:background="#00000000"
+        android:adjustViewBounds="true"
+    	android:cropToPadding="false"
+    	android:layout_below="@+id/riverview"
+    	android:scaleType="fitXY"
+        android:src="@drawable/highland" />
+
+    <ImageButton
         android:id="@+id/schenley"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="schenley" />
- 
-</LinearLayout>
+        android:layout_centerHorizontal="true"
+        android:background="#00000000"
+        android:adjustViewBounds="true"
+    	android:cropToPadding="false"
+    	android:layout_below="@+id/highland"
+    	android:scaleType="fitXY"
+        android:src="@drawable/schenley" />
+    
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/schenley"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
+
+</RelativeLayout>
+
+</ScrollView>

@@ -152,14 +152,20 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
 	    @Override
 	    public void onMyLocationChange(Location location) {
+
 	    	if( mListener != null )
 	        {
 	            mListener.onLocationChanged(location);
-	            googleMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+	            if(window == false){
+	            	googleMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+	            }
 	        }
+	    	
 	        LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
 	        if(googleMap != null){
-	        	googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(current, 16.0f));
+	        	if(window == false){
+	        		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(current, 16.0f));
+	        	}
 	        }
 	    }
 	};

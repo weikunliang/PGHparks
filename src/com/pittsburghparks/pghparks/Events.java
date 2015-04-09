@@ -19,12 +19,12 @@ public class Events extends SherlockFragment {
 	    
 	    webView.setWebViewClient(new MyWebViewClient());
         webView.getSettings().setPluginsEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(false); 
-        webView.getSettings().setSupportZoom(false);
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);   
         webView.getSettings().setAllowFileAccess(true); 
+        webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.loadUrl("https://www.pittsburghparks.org/events");
+        webView.loadUrl("http://www.pittsburghparks.org/calendar");
 	    
 	    return mainView;
 	}

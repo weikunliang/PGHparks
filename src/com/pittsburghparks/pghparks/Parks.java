@@ -19,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -83,11 +84,11 @@ public class Parks extends SherlockFragment {
 //				}
 //			});		
 	
-		Button schenley = (Button) rootView.findViewById(R.id.schenley);
-		Button frick = (Button) rootView.findViewById(R.id.frick);
-		Button highland = (Button) rootView.findViewById(R.id.highland);
-		Button emerald = (Button) rootView.findViewById(R.id.emerald);
-		Button riverview = (Button) rootView.findViewById(R.id.riverview);
+		ImageButton schenley = (ImageButton) rootView.findViewById(R.id.schenley);
+		ImageButton frick = (ImageButton) rootView.findViewById(R.id.frick);
+		ImageButton highland = (ImageButton) rootView.findViewById(R.id.highland);
+		ImageButton emerald = (ImageButton) rootView.findViewById(R.id.emerald);
+		ImageButton riverview = (ImageButton) rootView.findViewById(R.id.riverview);
 		
 		schenley.setOnClickListener(new OnClickListener() {
             @Override

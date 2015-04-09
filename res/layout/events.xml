@@ -5,7 +5,12 @@
 
 <WebView
         android:id="@+id/webview"
+        
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
+<supports-screens android:smallScreens="true"
+      android:normalScreens="true" 
+      android:largeScreens="true"
+  android:anyDensity="true" />
  
 </RelativeLayout>
