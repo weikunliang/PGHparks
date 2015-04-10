@@ -27,7 +27,9 @@
 
     <ImageButton
         android:id="@+id/emerald"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -39,6 +41,9 @@
 
     <ImageButton
         android:id="@+id/frick"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -51,6 +56,9 @@
 
     <ImageButton
         android:id="@+id/riverview"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -63,6 +71,9 @@
 
     <ImageButton
         android:id="@+id/highland"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -75,6 +86,9 @@
 
     <ImageButton
         android:id="@+id/schenley"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -89,7 +103,7 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/schenley"
         android:layout_centerHorizontal="true"
         android:src="@drawable/logo" />

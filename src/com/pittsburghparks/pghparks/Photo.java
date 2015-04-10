@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -37,6 +39,9 @@ public class Photo extends SherlockFragmentActivity {
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(this,Main.class));
 		
 		context = this;
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		setContentView(R.layout.photo);
 		try {
 			if(Data.activitiesArray.length() == 1) {
 				Intent myIntent = new Intent(context, Main.class);
@@ -49,12 +54,6 @@ public class Photo extends SherlockFragmentActivity {
 		
 		super.onCreate(savedInstanceState);
 		
-		ActionBar actionBar = getSupportActionBar();
-		actionBar.setLogo(R.drawable.ic_launcher);
-		actionBar.setDisplayUseLogoEnabled(true);
-		actionBar.setDisplayShowHomeEnabled(true);
-		
-		setContentView(R.layout.photo);
 	
 		Intent intent = getIntent();
 		parkName = intent.getStringExtra("parkName");
@@ -92,10 +91,6 @@ public class Photo extends SherlockFragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-        getSupportActionBar().setCustomView(R.layout.action_bar_title);
-		getSupportActionBar().setDisplayShowCustomEnabled(true);
-		getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	
