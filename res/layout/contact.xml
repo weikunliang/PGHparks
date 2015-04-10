@@ -9,11 +9,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
         android:text="About"
-        android:textColor="#566D30"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="20sp"
+        android:textColor="#566D30" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -27,10 +27,10 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="29dp"
-        android:layout_marginRight="22dp"
-        android:text="The official Pittburgh Parks app \nFunded by the Pittsburgh Park Conservancy and UPMC Health Plan"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:text="The official Pittburgh Parks app \nFunded by the Pittsburgh Park Conservancy and UPMC Health Plan" />
     
 
     <ImageView

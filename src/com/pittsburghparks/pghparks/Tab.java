@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -45,13 +46,6 @@ public class Tab extends SherlockFragmentActivity {
 		Tab3.setTabListener(new TabListener(fragmentTab3));
 		Tab4.setTabListener(new TabListener(fragmentTab4));
 		Tab5.setTabListener(new TabListener(fragmentTab5));
- 
-		// Add tabs to actionbar
-		actionBar.addTab(Tab1);
-		actionBar.addTab(Tab2);
-		actionBar.addTab(Tab3);
-		actionBar.addTab(Tab4);
-		actionBar.addTab(Tab5);
 	
 
 		final Intent intent = getIntent();
@@ -60,6 +54,24 @@ public class Tab extends SherlockFragmentActivity {
 		bundle.putString("lon", intent.getStringExtra("lon"));
 		// set Fragmentclass Arguments
 		fragmentTab1.setArguments(bundle);
+		
+		// Add tabs to actionbar
+		if (intent.getStringExtra("lat").equals(Double.toString(0))) {
+			
+			actionBar.addTab(Tab1, 0, false);
+			actionBar.addTab(Tab2, 1, true);
+			actionBar.addTab(Tab3, 2, false);
+			actionBar.addTab(Tab4, 3, false);
+			actionBar.addTab(Tab5, 4, false);
+		} else {
+			actionBar.addTab(Tab1, 0, true);
+			actionBar.addTab(Tab2, 1, false);
+			actionBar.addTab(Tab3, 2, false);
+			actionBar.addTab(Tab4, 3, false);
+			actionBar.addTab(Tab5, 4, false);
+			
+		}
+			
 		
 	}
 	

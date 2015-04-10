@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +28,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -69,6 +71,19 @@ public class ActivityList extends SherlockActivity {
 		
 		// get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        
+        ImageView icon = (ImageView) findViewById(R.id.pic);
+		if(parkName.equals("Emerald View Park")){
+			icon.setImageResource(R.drawable.emerald_icon);
+		} else if(parkName.equals("Frick Park")){
+			icon.setImageResource(R.drawable.frick_icon);
+		} else if(parkName.equals("Highland Park")){
+			icon.setImageResource(R.drawable.highland_icon);
+		} else if(parkName.equals("Riverview Park")){
+			icon.setImageResource(R.drawable.riverview_icon);
+		} else if(parkName.equals("Schenley Park")){
+			icon.setImageResource(R.drawable.schenley_icon);
+		}
         
         ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
         
