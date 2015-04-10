@@ -18,39 +18,39 @@ public class Contact extends SherlockFragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.contact, container, false);
         
-        Button facebook = (Button) rootView.findViewById(R.id.facebook);
-		facebook.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) 
-            {
-            	Uri uri = Uri.parse("https://www.facebook.com/pittsburghparks");
-            	Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            	startActivity(intent);
-            }
-        });
-		
-		Button twitter = (Button) rootView.findViewById(R.id.twitter);
-		twitter.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) 
-            {
-            	Uri uri = Uri.parse("https://twitter.com/pittsburghparks");
-            	Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            	startActivity(intent);
-            }
-        });
-		
-		Button instagram = (Button) rootView.findViewById(R.id.instagram);
-		instagram.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) 
-            {
-            	Uri uri = Uri.parse("https://instagram.com/pittsburghparks/");
-            	Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            	startActivity(intent);
-            }
-        });
-		
+//        Button facebook = (Button) rootView.findViewById(R.id.facebook);
+//		facebook.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) 
+//            {
+//            	Uri uri = Uri.parse("https://www.facebook.com/pittsburghparks");
+//            	Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//            	startActivity(intent);
+//            }
+//        });
+//		
+//		Button twitter = (Button) rootView.findViewById(R.id.twitter);
+//		twitter.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) 
+//            {
+//            	Uri uri = Uri.parse("https://twitter.com/pittsburghparks");
+//            	Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//            	startActivity(intent);
+//            }
+//        });
+//		
+//		Button instagram = (Button) rootView.findViewById(R.id.instagram);
+//		instagram.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) 
+//            {
+//            	Uri uri = Uri.parse("https://instagram.com/pittsburghparks/");
+//            	Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//            	startActivity(intent);
+//            }
+//        });
+//		
         return rootView;
     }
 
