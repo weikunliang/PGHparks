@@ -62,10 +62,10 @@ public class Main extends SherlockActivity {
 	{
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 		 
-		// set title
+		// Set title
 		alertDialogBuilder.setTitle("Error getting park data.");
 
-		// set dialog message
+		// Set dialog message
 		alertDialogBuilder
 			.setMessage("We encountered a problem while getting the park data. If this is your first time using the app, you must have an internet connection.")
 			.setCancelable(false)
@@ -78,10 +78,10 @@ public class Main extends SherlockActivity {
 				}
 			});
 
-			// create alert dialog
+			// Create alert dialog
 			AlertDialog alertDialog = alertDialogBuilder.create();
 
-			// show it
+			// Show it
 			alertDialog.show();
 	}
 	

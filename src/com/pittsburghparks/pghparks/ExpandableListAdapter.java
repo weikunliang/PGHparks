@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
- 
+
+/* The ExpandableListAdapter class is an adapter that links ExpandableListView
+ * with its data */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     private Context _context;

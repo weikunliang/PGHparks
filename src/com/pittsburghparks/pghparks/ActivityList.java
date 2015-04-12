@@ -11,13 +11,11 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,15 +30,19 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+/* The ActivityList class lists all the objects of a specific park by category.
+ * It also shows part of the park's description in the beginning along with a 
+ * photo icon which the user can click to see an image slideshow of the park. */
+
 public class ActivityList extends SherlockActivity {
+	
 	Context context;
-	Activity activity;
 	String parkName, parkId;
 	String activityId, activityName;
 	ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    List<String> listDataHeader; // the headers
+    HashMap<String, List<String>> listDataChild; // the list of objects under each header
     String text = "";
 	
 	@Override
@@ -62,6 +64,7 @@ public class ActivityList extends SherlockActivity {
 		parkName = intent.getStringExtra("parkName");
 		parkId = intent.getStringExtra("parkId");
 		
+		/* Sets up the Action bar */
 		super.onCreate(savedInstanceState);
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setLogo(R.drawable.ic_launcher);
@@ -69,9 +72,10 @@ public class ActivityList extends SherlockActivity {
 		actionBar.setDisplayShowHomeEnabled(true);	
 		setContentView(R.layout.activity_list); 
 		
-		// get the listview
+		/* Get the Expandable List View */
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
         
+        /* Sets the photo slideshow icon for each individual park */
         ImageView icon = (ImageView) findViewById(R.id.pic);
 		if(parkName.equals("Emerald View Park")){
 			icon.setImageResource(R.drawable.emerald_icon);
@@ -85,27 +89,28 @@ public class ActivityList extends SherlockActivity {
 			icon.setImageResource(R.drawable.schenley_icon);
 		}
         
+		/* Sets the focus to the top of the page */
         ScrollView mainScrollView = (ScrollView) findViewById(R.id.scroll);
-        
         
         mainScrollView.fullScroll(ScrollView.FOCUS_UP);
         mainScrollView.pageScroll(View.FOCUS_UP);
         mainScrollView.smoothScrollTo(0,0);
  
-        // preparing list data
+        // Preparing list data
         prepareListData();
  
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
  
-        // setting list adapter
+        // Setting list adapter
         expListView.setAdapter(listAdapter);
         
+        // Expands the expandable list views
         int count = listAdapter.getGroupCount();
         for (int position = 1; position <= count; position++){
         	expListView.expandGroup(position - 1);
         }
         
-     // Listview Group click listener
+        // Listview Group click listener
  		expListView.setOnGroupClickListener(new OnGroupClickListener() {
  			@Override
  			public boolean onGroupClick(ExpandableListView parent, View v,
@@ -148,8 +153,9 @@ public class ActivityList extends SherlockActivity {
  			}
  		});
  		
+ 		/* The more button is the button which starts a new activity that displays the 
+ 		 * entire information of a specific park */
  		Button more = (Button) findViewById(R.id.more);
-		
 		more.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -161,6 +167,8 @@ public class ActivityList extends SherlockActivity {
 			}			
 		});
 		
+		/* The photos button starts a new activity which displays a slideshow for
+		 * all the pictures for a specific park */
 		Button photo = (Button) findViewById(R.id.photo);
 		photo.setOnClickListener(new OnClickListener(){
 			@Override
@@ -176,27 +184,30 @@ public class ActivityList extends SherlockActivity {
 		
 		}
 	
+	// Function to convert dp to px
 	public int dpToPx(int dp) {
 	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
 	    int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));       
 	    return px;
 	}
 	
+	// Function to convert px to dp
 	public int pxToDp(int px) {
 	    DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
 	    int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
 	    return dp;
 	}
-		
+	
 	private void prepareListData() {
 		listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         List<String> child;
-        int countChild = 0;
-        int countParent = 0;
+        int countChild = 0; // counts the number of children a certain header has
+        int countParent = 0; // counts the number of headers a certain park has
         
         ArrayList<String> activitiesSubArrayAll = new ArrayList<String>();
 		JSONObject currActivity;
+		/* Filters the activities based on parks */
 		for(int i = 0; i<Data.activitiesArray.length(); i++)
 		{
 			try 
@@ -220,6 +231,8 @@ public class ActivityList extends SherlockActivity {
 		for(int x = 0; x<activitiesSubArrayAll.size(); x++){
 			try {
 				JSONObject activity = null;
+				
+				// Finds the header
 				for(int y = 0; y<Data.activitiesArray.length(); y++){
 					currAct = Data.activitiesArray.getJSONObject(y);
 					if(currAct.get("park_id").toString().equals(parkId) && currAct.get("title").toString().equals(activitiesSubArrayAll.get(x))){
@@ -228,6 +241,7 @@ public class ActivityList extends SherlockActivity {
 					}
 				}
 				
+				// Gets all the headers related to that specific header
 				for(int z = 0; z<Data.objectsArray.length(); z++){
 					currObject = Data.objectsArray.getJSONObject(z);
 					if(currObject.get("activityid").toString().equals(activity.get("id").toString())){

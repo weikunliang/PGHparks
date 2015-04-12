@@ -1,6 +1,7 @@
 package com.pittsburghparks.pghparks;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,15 +11,15 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/* The Events page loads the event page from the PPC's events page website*/
 public class Events extends SherlockFragment {
 
-	@SuppressWarnings("deprecation")
+	@SuppressLint("SetJavaScriptEnabled")
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	    View mainView = (View) inflater.inflate(R.layout.donate, container, false);
 	    WebView webView = (WebView) mainView.findViewById(R.id.web);
 	    
 	    webView.setWebViewClient(new MyWebViewClient());
-        webView.getSettings().setPluginsEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);   
         webView.getSettings().setAllowFileAccess(true); 

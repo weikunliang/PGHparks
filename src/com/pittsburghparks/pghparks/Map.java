@@ -2,7 +2,6 @@ package com.pittsburghparks.pghparks;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.actionbarsherlock.app.SherlockFragment;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -16,7 +15,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
@@ -46,7 +44,7 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	    mMapView = (MapView) v.findViewById(R.id.mapView);
 	    mMapView.onCreate(savedInstanceState);
 
-	    mMapView.onResume();// needed to get the map to display immediately
+	    mMapView.onResume(); // needed to get the map to display immediately
 
 	    try {
 	        MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -62,6 +60,7 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	    double latArg = 0;
 	    double lonArg = 0;
 	    
+	    // The arguments that were passed in from the Tab class
 	    Bundle arguments = getArguments();
 	    
 	    if(arguments != null){
@@ -76,12 +75,14 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 				latitude = (Double) currObj.get("lat");
 				longitude = (Double) currObj.get("lon");
 				
+				// Adds the marker for the specific activity
 				MarkerOptions marker = new MarkerOptions().position(
 			            new LatLng(latitude, longitude)).title(currObj.get("name").toString());
-				
 				marker.icon(BitmapDescriptorFactory
 			            .defaultMarker(BitmapDescriptorFactory.HUE_RED));
 				Marker m = googleMap.addMarker(marker);
+				
+				// If a specific activity has been clicked then show info window
 				if(latitude == latArg && longitude == lonArg){
 					m.showInfoWindow();
 					window = true;
@@ -136,9 +137,10 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
         CameraPosition cameraPosition;
         googleMap.setOnMyLocationChangeListener(myLocationChangeListener);
         
-        if(window){
+ 
+        if(window){ // if a specific activity is clicked
 	        cameraPosition = new CameraPosition.Builder().target(new LatLng(latArg, lonArg)).zoom(15).build();
-        } else {
+        } else { // centers on the user's current location
         	cameraPosition = new CameraPosition.Builder().target(coordinate).zoom(15).build();
 	        
         }

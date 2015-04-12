@@ -1,28 +1,17 @@
 package com.pittsburghparks.pghparks;
 
-
 import java.util.ArrayList;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.actionbarsherlock.app.SherlockFragment;
-
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+
+/* The Parks class lists all the parks in Pittsburgh */
 
 public class Parks extends SherlockFragment {
 	Context context;
@@ -45,27 +34,8 @@ public class Parks extends SherlockFragment {
 		
 		View rootView = inflater.inflate(R.layout.parks, container, false);
 
-        
-        ArrayList<String> parksArray = new ArrayList<String>();
-		parksIdArray = new ArrayList<String>();
-		JSONObject currPark;
-		for(int i = 0; i<Data.parksArray.length(); i++)
-		{
-			try 
-			{
-				currPark = Data.parksArray.getJSONObject(i);
-				parksArray.add(currPark.get("name").toString());
-				parksIdArray.add(currPark.get("id").toString());
-				
-			} 
-			catch (JSONException e) 
-			{
-				//handle JSON problem
-				e.printStackTrace();
-			}
-			
-		}	
-	
+		
+		/* Finds all the Imagebutton for the 5 different parks of Pittsburgh */
 		ImageButton schenley = (ImageButton) rootView.findViewById(R.id.schenley);
 		ImageButton frick = (ImageButton) rootView.findViewById(R.id.frick);
 		ImageButton highland = (ImageButton) rootView.findViewById(R.id.highland);

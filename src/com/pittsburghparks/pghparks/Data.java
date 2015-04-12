@@ -15,6 +15,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/* Loads all the data from the server */
 public class Data 
 {
 	public static JSONArray parksArray;

@@ -11,15 +11,16 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/* The Donate page displays the webview of the donate page on 
+ * the PPC's website */
 public class Donate extends SherlockFragment {
 	
-	@SuppressWarnings("deprecation")
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	    View mainView = (View) inflater.inflate(R.layout.donate, container, false);
 	    WebView webView = (WebView) mainView.findViewById(R.id.web);
 	    
+	    // Sets up the webview
 	    webView.setWebViewClient(new MyWebViewClient());
-        webView.getSettings().setPluginsEnabled(true);
         webView.getSettings().setBuiltInZoomControls(false); 
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);   

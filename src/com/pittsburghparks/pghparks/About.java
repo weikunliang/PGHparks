@@ -1,6 +1,5 @@
 package com.pittsburghparks.pghparks;
 
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -8,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+/* The About class displays the information about the park. It is called 
+ * when the see more button for a specific park is pressed. */
 
 public class About extends SherlockFragmentActivity {
 	Context context;
@@ -30,6 +32,8 @@ public class About extends SherlockFragmentActivity {
 		}
 		
 		super.onCreate(savedInstanceState);
+		
+		/* Sets up the action bar with the icon */
 		
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setLogo(R.drawable.ic_launcher);

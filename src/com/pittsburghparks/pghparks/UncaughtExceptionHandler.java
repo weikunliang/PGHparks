@@ -6,6 +6,8 @@ import java.io.StringWriter;
 import android.content.Context;
 import android.content.Intent;
 
+/* Deals with Exceptions so that the application does not crash */
+
 public class UncaughtExceptionHandler implements
 java.lang.Thread.UncaughtExceptionHandler {
 	private final Context myContext;

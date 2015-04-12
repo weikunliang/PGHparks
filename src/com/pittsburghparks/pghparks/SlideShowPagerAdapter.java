@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+/* The slideshow adapter links the slideshow to the data */
 public class SlideShowPagerAdapter extends PagerAdapter {
 
 	Context mContext;
@@ -52,8 +53,6 @@ public class SlideShowPagerAdapter extends PagerAdapter {
 		imageLoader.init(config);
 		String mainImageUrl = mResources[position];
 		imageLoader.displayImage(mainImageUrl, imageView);
-		
-		//imageView.setImageResource(mResources[position]);
 
 		container.addView(itemView);
 
