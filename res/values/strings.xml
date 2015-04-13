@@ -15,5 +15,10 @@
 
     <string name="title_activity_about">About</string>
     <string name="title_activity_photo">Photo</string>
+    <string name="more">see more…</string>
+    <string name="photos">Photos</string>
+    <string name="about">About</string>
+    <string name="content">The mission of the Pittsburgh Parks Conservancy is improving quality of life for the people of Pittsburgh by restoring the park system to excellence in partnership with government and the community. Projects and programs are conducted with respect for the environment, historic design, and the needs of our diverse region. \n\nA nonprofit organization, the Parks Conservancy has worked closely with the City of Pittsburgh since 1998 under an official public-private partnership agreement to restore the city's four regional parks: Frick, Highland, Riverview, and Schenley. To date, the Parks Conservancy has raised over $83 million toward park improvements. In addition to completing 14 Capital Projects, stewarding over 1,700 acres, and working with thousands of volunteers annually, the Parks Conservancy has expanded into community and neighborhood parks throughout Pittsburgh.</string>
+    
 
 </resources>

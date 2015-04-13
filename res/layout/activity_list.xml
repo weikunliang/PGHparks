@@ -2,17 +2,16 @@
 
 <ScrollView
     android:id="@+id/scroll"
-       xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
    	xmlns:android="http://schemas.android.com/apk/res/android"
-       android:layout_width="fill_parent" 
+    android:layout_width="fill_parent" 
    	android:layout_height="fill_parent">
        
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	   
 	    android:orientation="vertical" >
-	    
+	        
 	   <RelativeLayout
 	        android:layout_width="match_parent"
 	    	android:layout_height="match_parent">
@@ -40,6 +39,7 @@
 	    
 		    <ImageView
 		        android:id="@+id/pic"
+		        android:contentDescription="@string/app_name"
 		        android:layout_width="80dp"
 		        android:layout_height="80dp"
 		        android:layout_marginLeft="10dp"
@@ -58,24 +58,23 @@
 		        android:layout_alignLeft="@+id/pic"
 		        android:background="@android:color/transparent"
 		        android:paddingLeft="14dp"
-		        android:text="Photos"
+		        android:text="@string/photos"
 		        android:textSize="15sp"
 		        android:textColor="#478FCC" />
 
 	    
-	    <Button
-	        android:id="@+id/more"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="20dp"
-	        android:background="@android:color/transparent"
-	        android:textColor="#478FCC"
-	        android:layout_marginTop="0dp"
-	        android:layout_marginBottom="15dp"
-	        android:layout_below="@+id/content"
-	        android:text="see more..." />
-
+		    <Button
+		        android:id="@+id/more"
+		        style="?android:attr/buttonStyleSmall"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="20dp"
+		        android:background="@android:color/transparent"
+		        android:textColor="#478FCC"
+		        android:layout_marginTop="0dp"
+		        android:layout_marginBottom="15dp"
+		        android:layout_below="@+id/content"
+		        android:text="@string/more" />
 	    
 	    </RelativeLayout>
 
@@ -88,4 +87,4 @@
 	    </ExpandableListView>
 	
 	</LinearLayout>
-	</ScrollView>
+</ScrollView>
