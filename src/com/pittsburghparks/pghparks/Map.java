@@ -7,7 +7,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -156,12 +155,12 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
 	private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
 	    @Override
 	    public void onMyLocationChange(Location location) {
-	    	LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
+	    	coordinate = new LatLng(location.getLatitude(), location.getLongitude());
 	    	if( mListener != null )
 	        {
 	            mListener.onLocationChanged(location);
 	            if(window == false){
-	            	googleMap.animateCamera(CameraUpdateFactory.newLatLng(current));
+	            	googleMap.animateCamera(CameraUpdateFactory.newLatLng(coordinate));
 	            }
 	        }
 	    	
