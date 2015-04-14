@@ -7,6 +7,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
@@ -26,7 +27,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class Map extends SherlockFragment implements LocationListener, LocationSource, OnInfoWindowClickListener, android.location.LocationListener{
+public class Map extends SherlockFragment implements LocationListener, LocationSource, 
+						OnInfoWindowClickListener, android.location.LocationListener{
 	MapView mMapView;
 	private GoogleMap googleMap;
 	private LocationManager locationManager;
@@ -266,5 +268,4 @@ public class Map extends SherlockFragment implements LocationListener, LocationS
         // TODO Auto-generated method stub
         Toast.makeText(getActivity(), "status changed", Toast.LENGTH_SHORT).show();
     }
-
 }
