@@ -1,37 +1,28 @@
 package com.pittsburghparks.pghparks;
 
 import java.util.ArrayList;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ViewFlipper;
-
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
+/* ActivityDetail class is called when a specific object from a park is clicked.
+ * It displays information about the park and also a see on map button which
+ * centers the map on that object. */
 public class ActivityDetail extends SherlockFragmentActivity {
 
 	Context context;
-	ViewFlipper flipper;
 	ArrayList<JSONObject> activityObjectsArray;
-	ImageLoader imageLoader = ImageLoader.getInstance();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -58,18 +49,15 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		
 		setContentView(R.layout.activity_detail);
         
-		
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View actionBarView = inflater.inflate(R.layout.action_bar_title, null);
-//        TextView title = (TextView) actionBarView.findViewById(R.id.title);
-//        title.setText("Parks");
-//		
 		final Intent intent = getIntent();
-		String txt = "";
-		double lat = 0;
-		double lon = 0;
+		String txt = ""; // the information about the object
+		double lat = 0; // object latitude
+		double lon = 0; // object longitude
 		String objectName = intent.getStringExtra("objectName");
 		JSONObject currObject;
+		
+		/* Loops through the objects array and finds the latitude, longitude,
+		 * and description of the object */
 		for(int i = 0; i<Data.objectsArray.length(); i++){
 			try {
 				currObject = Data.objectsArray.getJSONObject(i);
@@ -91,19 +79,12 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		
 		TextView content = (TextView) findViewById(R.id.description);
 		TextView object = (TextView) findViewById(R.id.title);
-		if(content == null){
-			Log.i("CONTENT", "NULLL");
-		}
-		
-		if(object == null){
-			Log.i("TITLE", "NULL");
-		}
 		
 		object.setText(objectName);
 		content.setText(txt);
 		
+		/* Sets up the button so that it passes in the object's latitude and longitude*/
 		Button open = (Button) findViewById(R.id.open);
-		
 		open.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {

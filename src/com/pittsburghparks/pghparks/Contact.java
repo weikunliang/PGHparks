@@ -1,6 +1,5 @@
 package com.pittsburghparks.pghparks;
 
-
 import com.actionbarsherlock.app.SherlockFragment;
 
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/* The Contact page shows the contact information for PPC along with
+ * links to its Facebook, Twitter, and Instagram page */
 public class Contact extends SherlockFragment {
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

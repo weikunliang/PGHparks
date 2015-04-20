@@ -1,24 +1,25 @@
 package com.pittsburghparks.pghparks;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 
+/* The Tab class sets up the initial tab for the page */
+
 public class Tab extends SherlockFragmentActivity {
 	ActionBar.Tab Tab1,Tab2,Tab3,Tab4,Tab5;
+	
+	/* Initializes the 5 tabs */
 	Fragment fragmentTab1 = new Map();
 	Fragment fragmentTab2 = new Parks();
 	Fragment fragmentTab3 = new Events();
 	Fragment fragmentTab4 = new Donate();
 	Fragment fragmentTab5 = new Contact();
 	
-	@SuppressLint("NewApi") @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -29,9 +30,6 @@ public class Tab extends SherlockFragmentActivity {
 		actionBar.setDisplayUseLogoEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(true);
 		
- 
-		// Hide Actionbar Title
-		//actionBar.setDisplayShowTitleEnabled(false);
  
 		// Create Actionbar Tabs
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -49,21 +47,35 @@ public class Tab extends SherlockFragmentActivity {
 		Tab3.setTabListener(new TabListener(fragmentTab3));
 		Tab4.setTabListener(new TabListener(fragmentTab4));
 		Tab5.setTabListener(new TabListener(fragmentTab5));
- 
-		// Add tabs to actionbar
-		actionBar.addTab(Tab1);
-		actionBar.addTab(Tab2);
-		actionBar.addTab(Tab3);
-		actionBar.addTab(Tab4);
-		actionBar.addTab(Tab5);
 	
 
 		final Intent intent = getIntent();
 		Bundle bundle = new Bundle();
 		bundle.putString("lat", intent.getStringExtra("lat"));
 		bundle.putString("lon", intent.getStringExtra("lon"));
-		// set Fragmentclass Arguments
+		
+		// Set Fragmentclass Arguments
 		fragmentTab1.setArguments(bundle);
+		
+		// Add tabs to actionbar
+		/* If a new activity is started, then set the parks page to 
+		 * be the first page that is displayed, else set the maps page
+		 * if there is latitude or longitude information passed in the activity*/
+		if (intent.getStringExtra("lat").equals(Double.toString(0))) {	
+			actionBar.addTab(Tab1, 0, false);
+			actionBar.addTab(Tab2, 1, true);
+			actionBar.addTab(Tab3, 2, false);
+			actionBar.addTab(Tab4, 3, false);
+			actionBar.addTab(Tab5, 4, false);
+		} else {
+			actionBar.addTab(Tab1, 0, true);
+			actionBar.addTab(Tab2, 1, false);
+			actionBar.addTab(Tab3, 2, false);
+			actionBar.addTab(Tab4, 3, false);
+			actionBar.addTab(Tab5, 4, false);
+			
+		}
+			
 		
 	}
 	
