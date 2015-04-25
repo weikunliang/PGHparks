@@ -46,6 +46,7 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		actionBar.setLogo(R.drawable.ic_launcher);
 		actionBar.setDisplayUseLogoEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		setContentView(R.layout.activity_detail);
         
@@ -108,15 +109,15 @@ public class ActivityDetail extends SherlockFragmentActivity {
 		return true;
 	}
 	
-	public boolean onOptionsItemSelected(MenuItem menuitem)
-	{
-		if(menuitem.getTitle().toString().equals("MyPGH Parks"))
-		{
-			finish();	
-		}
-		else
-		{}
-		return false;
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		final Intent intent = getIntent();
+	    Intent myIntent = new Intent(getApplicationContext(), ActivityList.class);
+	    myIntent.putExtra("parkName", intent.getStringExtra("parkName"));
+		myIntent.putExtra("parkId", intent.getStringExtra("parkId"));
+	    startActivityForResult(myIntent, 0);
+	    return true;
+
 	}
 	
 	public void onStart()

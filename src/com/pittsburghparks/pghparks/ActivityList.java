@@ -146,6 +146,7 @@ public class ActivityList extends SherlockActivity {
  				
  				Intent myIntent = new Intent(context, ActivityDetail.class);
 				myIntent.putExtra("activityName", listDataHeader.get(groupPosition));
+				myIntent.putExtra("parkName", parkName);
 				myIntent.putExtra("parkId", parkId);
 				myIntent.putExtra("objectName", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition));
 				context.startActivity(myIntent);
@@ -162,6 +163,7 @@ public class ActivityList extends SherlockActivity {
 				// TODO Auto-generated method stub
 				Intent myIntent = new Intent(getApplicationContext(),About.class);
 				myIntent.putExtra("parkName", parkName);
+				myIntent.putExtra("parkId", parkId);
 				myIntent.putExtra("info", text);
 				startActivity(myIntent);
 			}			

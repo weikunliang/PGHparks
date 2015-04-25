@@ -3,6 +3,8 @@ package com.pittsburghparks.pghparks;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 
 public class About extends SherlockFragmentActivity {
 	Context context;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -39,6 +41,7 @@ public class About extends SherlockFragmentActivity {
 		actionBar.setLogo(R.drawable.ic_launcher);
 		actionBar.setDisplayUseLogoEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		setContentView(R.layout.about);
 		
@@ -48,6 +51,17 @@ public class About extends SherlockFragmentActivity {
 		park.setText(intent.getStringExtra("parkName"));
 		info.setText(intent.getStringExtra("info"));
 		
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		final Intent intent = getIntent();
+	    Intent myIntent = new Intent(getApplicationContext(), ActivityList.class);
+	    myIntent.putExtra("parkName", intent.getStringExtra("parkName"));
+		myIntent.putExtra("parkId", intent.getStringExtra("parkId"));
+	    startActivityForResult(myIntent, 0);
+	    return true;
+
 	}
 
 	@Override
