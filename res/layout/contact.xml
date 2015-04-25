@@ -68,7 +68,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/instagram"
 	        android:layout_centerHorizontal="true"
-	        android:layout_marginBottom="20dp"
+	        android:layout_marginBottom="25dp"
 	        android:layout_marginTop="20dp"
 	        android:src="@drawable/logo" />
 	
