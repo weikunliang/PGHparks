@@ -1,6 +1,5 @@
 package com.pittsburghparks.pghparks;
 
-import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,8 +21,7 @@ import com.actionbarsherlock.view.MenuItem;
 public class ActivityDetail extends SherlockFragmentActivity {
 
 	Context context;
-	ArrayList<JSONObject> activityObjectsArray;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -112,9 +110,41 @@ public class ActivityDetail extends SherlockFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item){
 		
 		final Intent intent = getIntent();
+		String pId = "";
+		String pName = "";
+		
+		String objectName = intent.getStringExtra("objectName");
+		JSONObject currObject;
+		for(int i = 0; i<Data.objectsArray.length(); i++){
+			try {
+				currObject = Data.objectsArray.getJSONObject(i);
+				if(currObject.get("name").toString().equals(objectName)){
+					pId = currObject.get("park_id").toString();
+					break;
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		JSONObject currPark;
+		for(int i=0; i<Data.parksArray.length(); i++){
+			try {
+				currPark = Data.parksArray.getJSONObject(i);
+				if(currPark.get("id").toString().equals(pId)){
+					pName = currPark.get("name").toString();
+					break;
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	    Intent myIntent = new Intent(getApplicationContext(), ActivityList.class);
-	    myIntent.putExtra("parkName", intent.getStringExtra("parkName"));
-		myIntent.putExtra("parkId", intent.getStringExtra("parkId"));
+	    myIntent.putExtra("parkName", pName);
+		myIntent.putExtra("parkId", pId);
 	    startActivityForResult(myIntent, 0);
 	    return true;
 
