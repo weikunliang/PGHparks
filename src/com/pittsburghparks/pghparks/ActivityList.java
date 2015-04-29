@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.content.Context;
 import android.content.Intent;
@@ -70,6 +71,7 @@ public class ActivityList extends SherlockActivity {
 		actionBar.setLogo(R.drawable.ic_launcher);
 		actionBar.setDisplayUseLogoEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(true);	
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_list); 
 		
 		/* Get the Expandable List View */
@@ -146,6 +148,7 @@ public class ActivityList extends SherlockActivity {
  				
  				Intent myIntent = new Intent(context, ActivityDetail.class);
 				myIntent.putExtra("activityName", listDataHeader.get(groupPosition));
+				myIntent.putExtra("parkName", parkName);
 				myIntent.putExtra("parkId", parkId);
 				myIntent.putExtra("objectName", listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition));
 				context.startActivity(myIntent);
@@ -162,6 +165,7 @@ public class ActivityList extends SherlockActivity {
 				// TODO Auto-generated method stub
 				Intent myIntent = new Intent(getApplicationContext(),About.class);
 				myIntent.putExtra("parkName", parkName);
+				myIntent.putExtra("parkId", parkId);
 				myIntent.putExtra("info", text);
 				startActivity(myIntent);
 			}			
@@ -358,6 +362,16 @@ public class ActivityList extends SherlockActivity {
 		
 
 	
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+	    Intent myIntent = new Intent(getApplicationContext(), Tab.class);
+	    myIntent.putExtra("lat", Double.toString(0));
+		myIntent.putExtra("lon", Double.toString(0));
+	    startActivityForResult(myIntent, 0);
+	    return true;
+
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) 

@@ -47,12 +47,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityList" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ActivityOption" >
+        <activity android:name=".ActivityList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
